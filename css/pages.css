@@ -1,0 +1,765 @@
+/* =========================================================
+   LUNÉVIA — EXTRA PAGES (css/pages.css)
+   Link this file AFTER style.css on: faq, shipping-returns,
+   privacy, terms, 404, login, account, order-tracking and
+   order-confirmation.
+========================================================= */
+
+
+/* =========================================================
+   READING PAGES (policies, FAQ)
+========================================================= */
+
+.content-section {
+    padding-bottom: 100px;
+}
+
+.content-narrow {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.legal-updated {
+    margin-bottom: 30px;
+    color: var(--lv-text-light);
+    font-size: 12px;
+}
+
+.prose h2 {
+    margin: 42px 0 12px;
+    font-family: var(--lv-font-display);
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+}
+
+.prose h2:first-child {
+    margin-top: 0;
+}
+
+.prose p,
+.prose li {
+    color: var(--lv-text-soft);
+    font-size: 14px;
+    line-height: 1.85;
+}
+
+.prose p {
+    margin-bottom: 14px;
+}
+
+.prose ul {
+    margin: 0 0 16px;
+    padding-left: 20px;
+}
+
+.prose li {
+    margin-bottom: 6px;
+}
+
+.prose a {
+    color: var(--lv-accent-dark);
+    text-decoration: underline;
+}
+
+.prose a:hover {
+    color: var(--lv-text);
+}
+
+.prose strong {
+    color: var(--lv-text);
+}
+
+.info-callout {
+    margin: 0 0 30px;
+    padding: 20px 24px;
+    border-left: 3px solid var(--lv-accent);
+    background: var(--lv-bg-soft);
+}
+
+.info-callout p {
+    margin: 0;
+}
+
+.rate-table {
+    width: 100%;
+    margin: 0 0 18px;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.rate-table th,
+.rate-table td {
+    padding: 13px 14px;
+    border-bottom: 1px solid var(--lv-border);
+    text-align: left;
+}
+
+.rate-table th {
+    color: var(--lv-text);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.rate-table td {
+    color: var(--lv-text-soft);
+}
+
+.table-scroll {
+    overflow-x: auto;
+}
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.faq-group {
+    margin-bottom: 46px;
+}
+
+.faq-group > h2 {
+    margin-bottom: 8px;
+    font-family: var(--lv-font-display);
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--lv-border);
+}
+
+.faq-item summary {
+    position: relative;
+    padding: 20px 40px 20px 0;
+    font-family: var(--lv-font-display);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.35;
+    list-style: none;
+    cursor: pointer;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    content: "+";
+    position: absolute;
+    right: 4px;
+    top: 17px;
+    font-family: var(--lv-font-body);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--lv-accent);
+}
+
+.faq-item[open] summary::after {
+    content: "−";
+}
+
+.faq-item p {
+    max-width: 640px;
+    margin: 0;
+    padding: 0 40px 22px 0;
+    color: var(--lv-text-soft);
+    font-size: 14px;
+    line-height: 1.85;
+}
+
+.faq-item a {
+    color: var(--lv-accent-dark);
+    text-decoration: underline;
+}
+
+.faq-help {
+    margin-top: 10px;
+    padding: 30px;
+    background: var(--lv-bg-soft);
+    text-align: center;
+}
+
+.faq-help :is(h2, h3) {
+    margin-bottom: 8px;
+    font-family: var(--lv-font-display);
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.faq-help p {
+    margin-bottom: 18px;
+    color: var(--lv-text-soft);
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   404 PAGE
+========================================================= */
+
+.not-found-page {
+    padding: 90px 0 120px;
+    text-align: center;
+}
+
+.not-found-code {
+    margin-bottom: 10px;
+    color: var(--lv-border);
+    font-family: var(--lv-font-display);
+    font-size: clamp(100px, 20vw, 190px);
+    line-height: 1;
+}
+
+.not-found-page h1 {
+    margin-bottom: 12px;
+    font-family: var(--lv-font-display);
+    font-size: clamp(32px, 5vw, 46px);
+    font-weight: 400;
+}
+
+.not-found-page > .container > p {
+    max-width: 440px;
+    margin: 0 auto 28px;
+    color: var(--lv-text-soft);
+    font-size: 14px;
+}
+
+.not-found-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+
+/* =========================================================
+   LOGIN / REGISTER
+========================================================= */
+
+.auth-section {
+    padding-bottom: 100px;
+}
+
+.auth-card {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 40px;
+    background: var(--lv-white);
+}
+
+.auth-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--lv-border);
+}
+
+.auth-tab {
+    margin-bottom: -1px;
+    padding: 14px 10px;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: var(--lv-text-soft);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--lv-transition);
+}
+
+.auth-tab:hover {
+    color: var(--lv-text);
+}
+
+.auth-tab.active {
+    border-bottom-color: var(--lv-text);
+    color: var(--lv-text);
+}
+
+.auth-panel[hidden],
+.account-panel[hidden] {
+    display: none;
+}
+
+.auth-card .btn-primary-custom,
+.account-panel .btn-primary-custom {
+    width: 100%;
+    margin-top: 6px;
+}
+
+.auth-help {
+    margin: 20px 0 0;
+    color: var(--lv-text-soft);
+    font-size: 12px;
+    text-align: center;
+}
+
+.auth-help a {
+    text-decoration: underline;
+}
+
+.form-alert {
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.form-alert:empty {
+    display: none;
+}
+
+.form-alert.error {
+    background: #f6e6e4;
+    color: #8a403a;
+}
+
+.form-alert.success {
+    background: #e4efe6;
+    color: #2f5a3a;
+}
+
+.form-help {
+    margin: 6px 0 0;
+    color: var(--lv-text-light);
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   ORDERS (shared by account, tracking, confirmation)
+========================================================= */
+
+.order-card {
+    margin-bottom: 18px;
+    padding: 24px;
+    background: var(--lv-white);
+}
+
+.order-card-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px 20px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--lv-border);
+}
+
+.order-card-head :is(h2, h3) {
+    margin: 0 0 3px;
+    font-family: var(--lv-font-display);
+    font-size: 21px;
+    font-weight: 500;
+}
+
+.order-date {
+    color: var(--lv-text-light);
+    font-size: 12px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 11px;
+    background: var(--lv-bg-soft);
+    color: var(--lv-text-soft);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.status-processing {
+    background: #efe6dd;
+    color: var(--lv-accent-dark);
+}
+
+.status-shipped {
+    background: #e2ebf0;
+    color: #34566b;
+}
+
+.status-delivered {
+    background: #e0ece2;
+    color: #2f5a3a;
+}
+
+.status-cancelled {
+    background: #f6e3e1;
+    color: #8a403a;
+}
+
+.order-lines {
+    margin: 0 0 16px;
+    padding: 0;
+    list-style: none;
+}
+
+.order-line {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 0;
+}
+
+.order-line-image {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
+    background: var(--lv-bg-soft);
+}
+
+.order-line-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.order-line-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.order-line-info strong {
+    display: block;
+    font-size: 13px;
+}
+
+.order-line-info span {
+    color: var(--lv-text-light);
+    font-size: 12px;
+}
+
+.order-line-price {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.order-totals {
+    padding-top: 14px;
+    border-top: 1px solid var(--lv-border);
+}
+
+.order-card-actions {
+    margin-top: 18px;
+}
+
+.order-timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 10px 0 30px;
+    padding: 0;
+    list-style: none;
+}
+
+.order-timeline li {
+    position: relative;
+    padding-top: 38px;
+    color: var(--lv-text-light);
+    font-size: 12px;
+    text-align: center;
+}
+
+.order-timeline li::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    z-index: 1;
+    width: 16px;
+    height: 16px;
+    margin-left: -8px;
+    border-radius: 50%;
+    background: var(--lv-border);
+}
+
+.order-timeline li::after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: -50%;
+    width: 100%;
+    height: 2px;
+    background: var(--lv-border);
+}
+
+.order-timeline li:first-child::after {
+    display: none;
+}
+
+.order-timeline li.done::before,
+.order-timeline li.current::before,
+.order-timeline li.done::after,
+.order-timeline li.current::after {
+    background: var(--lv-text);
+}
+
+.order-timeline li.current {
+    color: var(--lv-text);
+    font-weight: 700;
+}
+
+.order-address {
+    margin: 0;
+    color: var(--lv-text-soft);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.order-address strong {
+    color: var(--lv-text);
+}
+
+.orders-empty {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.orders-empty i {
+    display: inline-block;
+    margin-bottom: 14px;
+    color: var(--lv-text-light);
+    font-size: 40px;
+}
+
+.orders-empty :is(h2, h3) {
+    margin-bottom: 8px;
+    font-family: var(--lv-font-display);
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.orders-empty p {
+    margin-bottom: 20px;
+    color: var(--lv-text-soft);
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   ACCOUNT
+========================================================= */
+
+.account-section {
+    padding-bottom: 100px;
+}
+
+.account-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+.account-nav {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.account-nav-btn {
+    padding: 13px 16px;
+    background: transparent;
+    color: var(--lv-text-soft);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-align: left;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--lv-transition);
+}
+
+.account-nav-btn:hover {
+    background: var(--lv-bg-soft);
+    color: var(--lv-text);
+}
+
+.account-nav-btn.active {
+    background: var(--lv-text);
+    color: #fff;
+}
+
+.account-signout {
+    margin-top: 14px;
+    border-top: 1px solid var(--lv-border);
+}
+
+.account-panel h2 {
+    margin-bottom: 18px;
+    font-family: var(--lv-font-display);
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.account-panel > p {
+    color: var(--lv-text-soft);
+    font-size: 14px;
+}
+
+.account-form {
+    max-width: 560px;
+}
+
+.account-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 22px 0 30px;
+}
+
+.account-stat {
+    padding: 22px;
+    background: var(--lv-white);
+}
+
+.account-stat strong {
+    display: block;
+    font-family: var(--lv-font-display);
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.account-stat span {
+    color: var(--lv-text-soft);
+    font-size: 12px;
+}
+
+.account-panel :is(h3, h4).account-subheading {
+    margin: 30px 0 14px;
+    font-family: var(--lv-font-display);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   ORDER TRACKING & CONFIRMATION
+========================================================= */
+
+.tracking-section,
+.confirm-section {
+    padding-bottom: 100px;
+}
+
+.tracking-card {
+    max-width: 560px;
+    margin: 0 auto 40px;
+    padding: 36px;
+    background: var(--lv-white);
+}
+
+.tracking-card .btn-primary-custom {
+    width: 100%;
+    margin-top: 6px;
+}
+
+.tracking-result {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.confirm-hero {
+    max-width: 560px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.confirm-hero > i {
+    display: inline-block;
+    margin-bottom: 16px;
+    color: var(--lv-accent);
+    font-size: 56px;
+}
+
+.confirm-hero h1 {
+    margin-bottom: 12px;
+    font-family: var(--lv-font-display);
+    font-size: clamp(34px, 5vw, 48px);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+}
+
+.confirm-hero p {
+    color: var(--lv-text-soft);
+    font-size: 14px;
+}
+
+.confirm-number {
+    display: inline-block;
+    margin: 6px 0 14px;
+    padding: 8px 18px;
+    border: 1px dashed var(--lv-accent);
+    font-family: var(--lv-font-display);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.confirm-body {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.confirm-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 991px) {
+
+    .account-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .account-nav {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .account-signout {
+        margin-top: 0;
+        border-top: 0;
+    }
+
+}
+
+@media (max-width: 575px) {
+
+    .auth-card,
+    .tracking-card {
+        padding: 28px 20px;
+    }
+
+    .order-card {
+        padding: 20px 16px;
+    }
+
+    .account-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .order-timeline li {
+        font-size: 11px;
+    }
+
+}

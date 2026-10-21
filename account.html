@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your Lunévia orders and details.">
+    <meta name="theme-color" content="#f8f5f1">
+    <meta name="robots" content="noindex">
+
+    <meta property="og:site_name" content="Lunévia">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="My Account | Lunévia">
+    <meta property="og:description" content="Your Lunévia orders and details.">
+
+    <meta property="og:image" content="https://lunevia-shop.vercel.app/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <title>My Account | Lunévia</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400..700&family=Playfair+Display:ital,wght@0,400..600;1,400&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+
+    <!-- Scripts: deferred, keep this order -->
+    <script src="js/config.js" defer></script>
+    <script src="js/products.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/store.js" defer></script>
+    <script src="js/account.js" defer></script>
+</head>
+<body>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="announcement-bar">
+        <div class="container text-center">
+            <p>Complimentary shipping on orders over $75 <span>•</span> Discover the new Lunévia collection</p>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Lunévia</a>
+                <button class="navbar-toggler" type="button" data-nav-toggle aria-controls="mainNavbar" aria-expanded="false" aria-label="Open navigation">
+                    <i class="bi bi-list"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=skincare">Skincare</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=beauty">Beauty</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=jewelry">Jewelry</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=accessories">Accessories</a></li>
+                    </ul>
+                    <div class="navbar-actions">
+                        <button class="nav-action" type="button" aria-label="Search" id="searchButton"><i class="bi bi-search"></i></button>
+                        <a href="account.html" class="nav-action" aria-label="My account"><i class="bi bi-person"></i></a>
+                        <a href="wishlist.html" class="nav-action" aria-label="Wishlist"><i class="bi bi-heart"></i><span class="nav-count wishlist-count">0</span></a>
+                        <a href="cart.html" class="nav-action" aria-label="Shopping bag"><i class="bi bi-bag"></i><span class="nav-count cart-count">0</span></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search Lunévia" aria-hidden="true">
+        <div class="search-overlay-content">
+            <button class="search-close" id="searchClose" type="button" aria-label="Close search"><i class="bi bi-x-lg"></i></button>
+            <p class="search-label">SEARCH LUNÉVIA</p>
+            <div class="search-input-wrapper">
+                <input type="search" id="searchInput" placeholder="Search skincare, jewelry, beauty..." aria-label="Search products" autocomplete="off" enterkeyhint="search">
+                <i class="bi bi-search"></i>
+            </div>
+        </div>
+    </div>
+
+    <main id="main" tabindex="-1">
+
+        <section class="page-header">
+            <div class="container text-center">
+                <p class="eyebrow">LUNÉVIA</p>
+                <h1>Your <em>Account.</em></h1>
+            </div>
+        </section>
+
+        <section class="account-section">
+            <div class="container">
+
+                <p class="demo-notice"><strong>Demo:</strong> your account and orders are stored in this browser only.</p>
+                <div class="account-layout u-hidden" id="accountLayout">
+
+                    <nav class="account-nav" aria-label="Account sections">
+                        <button type="button" class="account-nav-btn active" data-account-tab="overview">Overview</button>
+                        <button type="button" class="account-nav-btn" data-account-tab="orders">My orders</button>
+                        <button type="button" class="account-nav-btn" data-account-tab="details">My details</button>
+                        <button type="button" class="account-nav-btn" data-account-tab="password">Password</button>
+                        <button type="button" class="account-nav-btn account-signout" id="signOutBtn">Sign out</button>
+                    </nav>
+
+                    <div class="account-content">
+
+                        <!-- OVERVIEW -->
+                        <div class="account-panel" id="panel-overview">
+                            <h2 id="accountGreeting">Hello.</h2>
+                            <p>Here is a summary of your account.</p>
+
+                            <div class="account-stats">
+                                <div class="account-stat"><strong id="statOrders">0</strong><span>Orders placed</span></div>
+                                <div class="account-stat"><strong id="statWishlist">0</strong><span>Items in your wishlist</span></div>
+                            </div>
+
+                            <h3 class="account-subheading">Latest order</h3>
+                            <div id="recentOrder"></div>
+                        </div>
+
+                        <!-- ORDERS -->
+                        <div class="account-panel" id="panel-orders" hidden>
+                            <h2>My orders</h2>
+                            <div id="accountOrders"></div>
+                        </div>
+
+                        <!-- DETAILS -->
+                        <div class="account-panel" id="panel-details" hidden>
+                            <h2>My details</h2>
+                            <p>We use these details to fill in checkout for you.</p>
+
+                            <form class="account-form" id="detailsForm">
+                                <div class="form-group">
+                                    <label for="accountName">Full Name</label>
+                                    <input type="text" id="accountName" autocomplete="name" required>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="accountEmail">Email Address</label>
+                                        <input type="email" id="accountEmail" autocomplete="email" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="accountPhone">Phone Number</label>
+                                        <input type="tel" id="accountPhone" autocomplete="tel" inputmode="tel">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="accountAddress">Street Address</label>
+                                    <input type="text" id="accountAddress" autocomplete="street-address">
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="accountCity">City</label>
+                                        <input type="text" id="accountCity" autocomplete="address-level2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="accountZip">Postal Code</label>
+                                        <input type="text" id="accountZip" autocomplete="postal-code">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="accountState">State / Province</label>
+                                        <input type="text" id="accountState" autocomplete="address-level1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="accountCountry">Country</label>
+                                        <select id="accountCountry" autocomplete="country">
+                                            <option value="">Select country</option>
+                                        <option value="PK">Pakistan</option>
+                                        <option value="US">United States</option>
+                                        <option value="GB">United Kingdom</option>
+                                        <option value="CA">Canada</option>
+                                        <option value="AE">United Arab Emirates</option>
+                                        <option value="OTHER">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary-custom">Save details</button>
+                            </form>
+                        </div>
+
+                        <!-- PASSWORD -->
+                        <div class="account-panel" id="panel-password" hidden>
+                            <h2>Change password</h2>
+
+                            <form class="account-form" id="passwordForm">
+                                <div class="form-group">
+                                    <label for="currentPassword">Current Password</label>
+                                    <input type="password" id="currentPassword" autocomplete="current-password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword">New Password</label>
+                                    <input type="password" id="newPassword" autocomplete="new-password" minlength="8" required>
+                                    <p class="form-help">At least 8 characters.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmPassword">Confirm New Password</label>
+                                    <input type="password" id="confirmPassword" autocomplete="new-password" minlength="8" required>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary-custom">Change password</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row gy-5">
+                <div class="col-12 col-lg-4">
+                    <a href="index.html" class="footer-brand">Lunévia</a>
+                    <p class="footer-description">Beauty, skincare, jewelry and accessories curated for your everyday moments.</p>
+                    <!-- TODO: replace each "#" with your real profile link -->
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <h2>Shop</h2>
+                    <ul>
+                        <li><a href="shop.html?category=skincare">Skincare</a></li>
+                        <li><a href="shop.html?category=beauty">Beauty</a></li>
+                        <li><a href="shop.html?category=jewelry">Jewelry</a></li>
+                        <li><a href="shop.html?category=accessories">Accessories</a></li>
+                        <li><a href="shop.html">All Products</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <h2>Information</h2>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="shipping-returns.html">Shipping &amp; Returns</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="order-tracking.html">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <h2>Account</h2>
+                    <ul>
+                        <li><a href="account.html">My Account</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="cart.html">Shopping Bag</a></li>
+                        <li><a href="checkout.html">Checkout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Lunévia. All rights reserved.</p>
+                <div><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

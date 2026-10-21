@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="Checkout | Lunévia">
+    <meta name="theme-color" content="#f8f5f1">
+
+    <meta property="og:site_name" content="Lunévia">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Checkout | Lunévia">
+    <meta property="og:description" content="Checkout | Lunévia">
+
+    <meta property="og:image" content="https://lunevia-shop.vercel.app/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <title>Checkout | Lunévia</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400..700&family=Playfair+Display:ital,wght@0,400..600;1,400&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Scripts: deferred, keep this order -->
+    <script src="js/config.js" defer></script>
+    <script src="js/products.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/store.js" defer></script>
+    <script src="js/checkout.js" defer></script>
+</head>
+<body>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="announcement-bar">
+        <div class="container text-center">
+            <p>Complimentary shipping on orders over $75 <span>•</span> Discover the new Lunévia collection</p>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Lunévia</a>
+                <button class="navbar-toggler" type="button" data-nav-toggle aria-controls="mainNavbar" aria-expanded="false" aria-label="Open navigation">
+                    <i class="bi bi-list"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=skincare">Skincare</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=beauty">Beauty</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=jewelry">Jewelry</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=accessories">Accessories</a></li>
+                    </ul>
+                    <div class="navbar-actions">
+                        <button class="nav-action" type="button" aria-label="Search" id="searchButton"><i class="bi bi-search"></i></button>
+                        <a href="account.html" class="nav-action" aria-label="My account"><i class="bi bi-person"></i></a>
+                        <a href="wishlist.html" class="nav-action" aria-label="Wishlist"><i class="bi bi-heart"></i><span class="nav-count wishlist-count">0</span></a>
+                        <a href="cart.html" class="nav-action" aria-label="Shopping bag"><i class="bi bi-bag"></i><span class="nav-count cart-count">0</span></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search Lunévia" aria-hidden="true">
+        <div class="search-overlay-content">
+            <button class="search-close" id="searchClose" type="button" aria-label="Close search"><i class="bi bi-x-lg"></i></button>
+            <p class="search-label">SEARCH LUNÉVIA</p>
+            <div class="search-input-wrapper">
+                <input type="search" id="searchInput" placeholder="Search skincare, jewelry, beauty..." aria-label="Search products" autocomplete="off" enterkeyhint="search">
+                <i class="bi bi-search"></i>
+            </div>
+        </div>
+    </div>
+
+    <main id="main" tabindex="-1">
+
+        <section class="page-header">
+            <div class="container text-center">
+                <p class="eyebrow">LUNÉVIA</p>
+                <h1>Checkout</h1>
+            </div>
+        </section>
+
+        <section class="checkout-section">
+            <div class="container">
+
+                <div class="checkout-main-content" id="checkoutMainContent">
+
+                    <!-- FORM -->
+                    <form class="checkout-form" id="checkoutForm" name="store-orders" method="post" novalidate>
+                        <p class="demo-notice" data-demo-notice hidden><strong>Demo checkout:</strong> no payment is taken and no order is sent to a seller. Your order is saved in this browser only.</p>
+                        <p class="d-none" aria-hidden="true"><label>Leave this field empty: <input type="text" name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+                        <div class="checkout-block">
+
+                            <h2>Contact Information</h2>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="checkoutEmail">Email Address</label>
+                                    <input type="email" id="checkoutEmail" name="email" autocomplete="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="checkoutPhone">Phone Number</label>
+                                    <input type="tel" id="checkoutPhone" name="phone" autocomplete="tel" inputmode="tel" required>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="checkout-block">
+
+                            <h2>Shipping Address</h2>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="checkoutFirstName">First Name</label>
+                                    <input type="text" id="checkoutFirstName" name="firstName" autocomplete="given-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="checkoutLastName">Last Name</label>
+                                    <input type="text" id="checkoutLastName" name="lastName" autocomplete="family-name" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="checkoutAddress">Street Address</label>
+                                <input type="text" id="checkoutAddress" name="address" autocomplete="street-address" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="checkoutCity">City</label>
+                                    <input type="text" id="checkoutCity" name="city" autocomplete="address-level2" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="checkoutZip">Postal Code</label>
+                                    <input type="text" id="checkoutZip" name="zip" autocomplete="postal-code" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="checkoutState">State / Province <span class="optional-label">(optional)</span></label>
+                                    <input type="text" id="checkoutState" name="state" autocomplete="address-level1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="checkoutCountry">Country</label>
+                                    <select id="checkoutCountry" name="country" autocomplete="country" required>
+                                        <option value="">Select country</option>
+                                        <option value="PK">Pakistan</option>
+                                        <option value="US">United States</option>
+                                        <option value="GB">United Kingdom</option>
+                                        <option value="CA">Canada</option>
+                                        <option value="AE">United Arab Emirates</option>
+                                        <option value="OTHER">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="checkoutNotes">Order Notes <span class="optional-label">(optional)</span></label>
+                                <textarea id="checkoutNotes" name="notes" rows="3" maxlength="500" placeholder="Anything we should know about your delivery?"></textarea>
+                            </div>
+
+                        </div>
+
+
+                        <div class="checkout-block">
+
+                            <h2>Payment Method</h2>
+
+                            <div class="payment-options">
+
+                                <label class="payment-option">
+                                    <input type="radio" name="paymentMethod" value="cod" checked>
+                                    <span class="payment-option-label">
+                                        <i class="bi bi-cash"></i>
+                                        Cash on Delivery
+                                    </span>
+                                </label>
+
+                                <label class="payment-option payment-option-disabled">
+                                    <input type="radio" name="paymentMethod" value="card" disabled>
+                                    <span class="payment-option-label">
+                                        <i class="bi bi-credit-card"></i>
+                                        Credit / Debit Card
+                                        <span class="payment-badge">Coming soon</span>
+                                    </span>
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="checkout-terms">
+                            <label class="checkout-terms-label" for="checkoutTerms">
+                                <input type="checkbox" id="checkoutTerms" name="terms" required>
+                                <span>I agree to the <a href="terms.html" target="_blank" rel="noopener">Terms</a> and the <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</span>
+                            </label>
+                        </div>
+
+
+                        <button type="submit" id="placeOrderBtn" class="btn btn-primary-custom checkout-submit-btn">
+                            Place Order <i class="bi bi-arrow-right"></i>
+                        </button>
+
+                    </form>
+
+
+                    <!-- ORDER SUMMARY -->
+                    <div class="checkout-sidebar">
+
+                        <div class="checkout-summary">
+
+                            <h2>Order Summary</h2>
+
+                            <div id="checkoutItemsContainer" class="checkout-items-list"></div>
+
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span id="checkoutSubtotal">$0.00</span>
+                            </div>
+
+                            <div class="summary-row">
+                                <span>Shipping</span>
+                                <span id="checkoutShipping">Free</span>
+                            </div>
+
+                            <div class="summary-row summary-total">
+                                <span>Total</span>
+                                <span id="checkoutTotal">$0.00</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMPTY STATE -->
+                <div class="checkout-empty-state u-hidden" id="checkoutEmptyState">
+                    <i class="bi bi-bag"></i>
+                    <h2>Your bag is empty</h2>
+                    <p>Add some products before checking out.</p>
+                    <a href="shop.html" class="btn btn-primary-custom">Start Shopping</a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row gy-5">
+                <div class="col-12 col-lg-4">
+                    <a href="index.html" class="footer-brand">Lunévia</a>
+                    <p class="footer-description">Beauty, skincare, jewelry and accessories curated for your everyday moments.</p>
+                    <!-- TODO: replace each "#" with your real profile link -->
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <h2>Shop</h2>
+                    <ul>
+                        <li><a href="shop.html?category=skincare">Skincare</a></li>
+                        <li><a href="shop.html?category=beauty">Beauty</a></li>
+                        <li><a href="shop.html?category=jewelry">Jewelry</a></li>
+                        <li><a href="shop.html?category=accessories">Accessories</a></li>
+                        <li><a href="shop.html">All Products</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <h2>Information</h2>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="shipping-returns.html">Shipping &amp; Returns</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="order-tracking.html">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <h2>Account</h2>
+                    <ul>
+                        <li><a href="account.html">My Account</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="cart.html">Shopping Bag</a></li>
+                        <li><a href="checkout.html">Checkout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Lunévia. All rights reserved.</p>
+                <div><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

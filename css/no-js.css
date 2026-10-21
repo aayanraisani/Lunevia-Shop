@@ -1,0 +1,5 @@
+/* Loaded only when JavaScript is off (see <noscript> in index.html and shop.html).
+   Hides the loading placeholders, which would otherwise stay on screen forever. */
+.product-skeleton {
+    display: none;
+}

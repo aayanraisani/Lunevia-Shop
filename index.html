@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lunévia — Discover elegant skincare, beauty essentials, jewelry and accessories designed for everyday beauty.">
+    <meta name="theme-color" content="#f8f5f1">
+
+    <meta property="og:site_name" content="Lunévia">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Lunévia | Beauty, Elevated.">
+    <meta property="og:description" content="Lunévia — Discover elegant skincare, beauty essentials, jewelry and accessories designed for everyday beauty.">
+
+    <link rel="canonical" href="https://lunevia-shop.vercel.app/">
+    <meta property="og:url" content="https://lunevia-shop.vercel.app/">
+    <meta property="og:image" content="https://lunevia-shop.vercel.app/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <title>Lunévia | Beauty, Elevated.</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400..700&family=Playfair+Display:ital,wght@0,400..600;1,400&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <noscript><link rel="stylesheet" href="css/no-js.css"></noscript>
+
+    <!-- Scripts: deferred, keep this order -->
+    <script src="js/config.js" defer></script>
+    <script src="js/products.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/home.js" defer></script>
+</head>
+<body>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="announcement-bar">
+        <div class="container text-center">
+            <p>Complimentary shipping on orders over $75 <span>•</span> Discover the new Lunévia collection</p>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Lunévia</a>
+                <button class="navbar-toggler" type="button" data-nav-toggle aria-controls="mainNavbar" aria-expanded="false" aria-label="Open navigation">
+                    <i class="bi bi-list"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link active" href="index.html" aria-current="page">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=skincare">Skincare</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=beauty">Beauty</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=jewelry">Jewelry</a></li>
+                        <li class="nav-item"><a class="nav-link" href="shop.html?category=accessories">Accessories</a></li>
+                    </ul>
+                    <div class="navbar-actions">
+                        <button class="nav-action" type="button" aria-label="Search" id="searchButton"><i class="bi bi-search"></i></button>
+                        <a href="account.html" class="nav-action" aria-label="My account"><i class="bi bi-person"></i></a>
+                        <a href="wishlist.html" class="nav-action" aria-label="Wishlist"><i class="bi bi-heart"></i><span class="nav-count wishlist-count">0</span></a>
+                        <a href="cart.html" class="nav-action" aria-label="Shopping bag"><i class="bi bi-bag"></i><span class="nav-count cart-count">0</span></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search Lunévia" aria-hidden="true">
+        <div class="search-overlay-content">
+            <button class="search-close" id="searchClose" type="button" aria-label="Close search"><i class="bi bi-x-lg"></i></button>
+            <p class="search-label">SEARCH LUNÉVIA</p>
+            <div class="search-input-wrapper">
+                <input type="search" id="searchInput" placeholder="Search skincare, jewelry, beauty..." aria-label="Search products" autocomplete="off" enterkeyhint="search">
+                <i class="bi bi-search"></i>
+            </div>
+        </div>
+    </div>
+
+    <main id="main" tabindex="-1">
+
+        <!-- HERO -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+
+                    <div class="hero-text">
+                        <p class="eyebrow">THE LUNÉVIA COLLECTION</p>
+                        <h1>Beauty,<br><em>Elevated.</em></h1>
+                        <p class="hero-description">
+                            Discover carefully selected skincare, beauty essentials, jewelry and accessories
+                            designed to become part of your everyday ritual.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="shop.html" class="btn btn-primary-custom">Shop Collection <i class="bi bi-arrow-right"></i></a>
+                            <a href="#categories" class="btn btn-outline-custom">Explore Categories</a>
+                        </div>
+                    </div>
+
+                    <div class="hero-image-wrapper">
+                        <div class="hero-image">
+                            <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=800&q=75" srcset="https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=480&q=75 480w, https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=800&q=75 800w, https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1200&q=75 1200w" sizes="(min-width: 992px) 50vw, 100vw" width="1200" height="1500" decoding="async" alt="Lunévia skincare collection" fetchpriority="high">
+                        </div>
+                        <div class="hero-floating-card">
+                            <span class="floating-card-icon"><i class="bi bi-stars"></i></span>
+                            <div>
+                                <small>NEW COLLECTION</small>
+                                <strong>Discover your glow</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- TRUST STRIP -->
+        <section class="trust-strip" aria-label="Why shop with Lunévia">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-6 col-lg-3">
+                        <div class="trust-item">
+                            <i class="bi bi-gem"></i>
+                            <div><strong>Curated Quality</strong><span>Selected with care</span></div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="trust-item">
+                            <i class="bi bi-box-seam"></i>
+                            <div><strong>Elegant Packaging</strong><span>Beautifully presented</span></div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="trust-item">
+                            <i class="bi bi-bag-check"></i>
+                            <div><strong>Simple Ordering</strong><span>Clear, guided checkout</span></div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-3">
+                        <div class="trust-item">
+                            <i class="bi bi-heart"></i>
+                            <div><strong>Made for You</strong><span>Beauty for every day</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CATEGORIES -->
+        <section class="categories-section section-padding" id="categories">
+            <div class="container">
+
+                <div class="section-heading text-center">
+                    <p class="eyebrow">EXPLORE LUNÉVIA</p>
+                    <h2>Find your <em>essentials.</em></h2>
+                    <p>From everyday skincare to finishing touches, discover everything in one place.</p>
+                </div>
+
+                <div class="row g-4 mt-3">
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <a href="shop.html?category=skincare" class="category-card">
+                            <div class="category-image">
+                                <img src="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=800&q=75" srcset="https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=480&q=75 480w, https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=800&q=75 800w, https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=1200&q=75 1200w" sizes="(min-width: 992px) 25vw, (min-width: 768px) 50vw, 100vw" width="1200" height="1500" decoding="async" alt="Skincare products" loading="lazy">
+                            </div>
+                            <div class="category-content">
+                                <span>01</span>
+                                <h3>Skincare</h3>
+                                <p>Rituals for your natural glow</p>
+                                <i class="bi bi-arrow-up-right"></i>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <a href="shop.html?category=beauty" class="category-card">
+                            <div class="category-image">
+                                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=75" srcset="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=480&q=75 480w, https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=75 800w, https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=75 1200w" sizes="(min-width: 992px) 25vw, (min-width: 768px) 50vw, 100vw" width="1200" height="1500" decoding="async" alt="Beauty products" loading="lazy">
+                            </div>
+                            <div class="category-content">
+                                <span>02</span>
+                                <h3>Beauty</h3>
+                                <p>Essentials that elevate you</p>
+                                <i class="bi bi-arrow-up-right"></i>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <a href="shop.html?category=jewelry" class="category-card">
+                            <div class="category-image">
+                                <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=75" srcset="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=480&q=75 480w, https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=75 800w, https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=75 1200w" sizes="(min-width: 992px) 25vw, (min-width: 768px) 50vw, 100vw" width="1200" height="1500" decoding="async" alt="Jewelry collection" loading="lazy">
+                            </div>
+                            <div class="category-content">
+                                <span>03</span>
+                                <h3>Jewelry</h3>
+                                <p>Little details, lasting impressions</p>
+                                <i class="bi bi-arrow-up-right"></i>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <a href="shop.html?category=accessories" class="category-card">
+                            <div class="category-image">
+                                <img src="https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?auto=format&fit=crop&w=800&q=75" srcset="https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?auto=format&fit=crop&w=480&q=75 480w, https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?auto=format&fit=crop&w=800&q=75 800w, https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?auto=format&fit=crop&w=1200&q=75 1200w" sizes="(min-width: 992px) 25vw, (min-width: 768px) 50vw, 100vw" width="1200" height="1500" decoding="async" alt="Fashion accessories" loading="lazy">
+                            </div>
+                            <div class="category-content">
+                                <span>04</span>
+                                <h3>Accessories</h3>
+                                <p>Complete your everyday style</p>
+                                <i class="bi bi-arrow-up-right"></i>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- FEATURED PRODUCTS (built by js/home.js from the catalog) -->
+        <section class="featured-section section-padding" id="featuredSection">
+            <div class="container">
+
+                <div class="section-heading-row">
+                    <div class="section-heading">
+                        <p class="eyebrow">CURATED FOR YOU</p>
+                        <h2>Featured <em>favorites.</em></h2>
+                    </div>
+                    <a href="shop.html" class="text-link">View all products <i class="bi bi-arrow-right"></i></a>
+                </div>
+
+                <div class="row g-4 mt-2" id="featuredGrid">
+                    <div class="col-12 col-sm-6 col-lg-3 product-skeleton" aria-hidden="true"><div class="skeleton-card"><div class="product-image skeleton-image"></div><div class="skeleton-line skeleton-line-short"></div><div class="skeleton-line"></div><div class="skeleton-button"></div></div></div>
+                    <div class="col-12 col-sm-6 col-lg-3 product-skeleton" aria-hidden="true"><div class="skeleton-card"><div class="product-image skeleton-image"></div><div class="skeleton-line skeleton-line-short"></div><div class="skeleton-line"></div><div class="skeleton-button"></div></div></div>
+                    <div class="col-12 col-sm-6 col-lg-3 product-skeleton" aria-hidden="true"><div class="skeleton-card"><div class="product-image skeleton-image"></div><div class="skeleton-line skeleton-line-short"></div><div class="skeleton-line"></div><div class="skeleton-button"></div></div></div>
+                    <div class="col-12 col-sm-6 col-lg-3 product-skeleton" aria-hidden="true"><div class="skeleton-card"><div class="product-image skeleton-image"></div><div class="skeleton-line skeleton-line-short"></div><div class="skeleton-line"></div><div class="skeleton-button"></div></div></div>
+                </div>
+
+                <noscript>
+                    <p class="text-center mt-4">Turn on JavaScript to see our featured products, or <a href="shop.html"><u>visit the shop</u></a>.</p>
+                </noscript>
+
+            </div>
+        </section>
+
+
+        <!-- EDITORIAL BANNER -->
+        <section class="editorial-section">
+            <div class="container">
+                <div class="editorial-banner">
+                    <div class="editorial-content">
+                        <p class="eyebrow">YOUR EVERYDAY RITUAL</p>
+                        <h2>Small details.<br><em>Beautiful moments.</em></h2>
+                        <p>Build a routine that feels uniquely yours, from the first step of skincare to the final touch of jewelry.</p>
+                        <a href="shop.html" class="btn btn-light-custom">Explore Lunévia <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                    <div class="editorial-image">
+                        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=75" srcset="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=480&q=75 480w, https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=75 800w, https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1200&q=75 1200w" sizes="(min-width: 992px) 50vw, 100vw" width="1200" height="1500" decoding="async" alt="Lunévia beauty lifestyle" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- NEWSLETTER -->
+        <section class="newsletter-section section-padding">
+            <div class="container">
+                <div class="newsletter-box text-center">
+                    <p class="eyebrow">STAY IN THE LUNÉVIA CIRCLE</p>
+                    <h2>Beauty notes, <em>delivered.</em></h2>
+                    <p>Sign up for new arrivals, curated edits, special offers and inspiration.</p>
+
+                    <form class="newsletter-form" id="newsletterForm" name="newsletter" method="post" novalidate>
+
+                            <p class="d-none" aria-hidden="true"><label>Leave this field empty: <input type="text" name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+                        <div class="newsletter-input">
+                            <label class="visually-hidden" for="newsletterEmail">Email address</label>
+                            <input type="email" id="newsletterEmail" name="email" placeholder="Your email address" autocomplete="email" required>
+                            <button type="submit">Subscribe <i class="bi bi-arrow-right"></i></button>
+                        </div>
+                        <p class="form-status" data-form-status role="status"></p>
+                    </form>
+
+                    <small>By subscribing, you agree to receive emails from Lunévia.</small>
+                    <small class="demo-notice-inline" data-demo-notice hidden>Demo template: sign-ups are not sent anywhere.</small>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row gy-5">
+                <div class="col-12 col-lg-4">
+                    <a href="index.html" class="footer-brand">Lunévia</a>
+                    <p class="footer-description">Beauty, skincare, jewelry and accessories curated for your everyday moments.</p>
+                    <!-- TODO: replace each "#" with your real profile link -->
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <h2>Shop</h2>
+                    <ul>
+                        <li><a href="shop.html?category=skincare">Skincare</a></li>
+                        <li><a href="shop.html?category=beauty">Beauty</a></li>
+                        <li><a href="shop.html?category=jewelry">Jewelry</a></li>
+                        <li><a href="shop.html?category=accessories">Accessories</a></li>
+                        <li><a href="shop.html">All Products</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <h2>Information</h2>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="shipping-returns.html">Shipping &amp; Returns</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="order-tracking.html">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <h2>Account</h2>
+                    <ul>
+                        <li><a href="account.html">My Account</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="cart.html">Shopping Bag</a></li>
+                        <li><a href="checkout.html">Checkout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Lunévia. All rights reserved.</p>
+                <div><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>
