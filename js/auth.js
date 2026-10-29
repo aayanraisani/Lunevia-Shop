@@ -19,7 +19,7 @@
     function getRedirectTarget() {
         let target = new URLSearchParams(window.location.search).get("redirect") || "";
 
-        // some hosts show pages without ".html" (clean URLs), so we add it back before checking
+        // some static hosts remove ".html" from page URLs, so we add it back before checking
         if (target && !target.endsWith(".html")) target += ".html";
 
         return allowedRedirects.includes(target) ? target : "account.html";

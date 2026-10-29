@@ -1,14 +1,13 @@
 /* =========================================================
    LUNÉVIA — PRODUCT CATALOG & SHARED HELPERS
-   Load this file on EVERY page, after config.js and before main.js.
+   Load this file on EVERY page, before main.js.
 ========================================================= */
 
 
 /* ---------- store settings ---------- */
 
 // Star ratings are hidden until they come from real customer reviews.
-// The sample products below carry no ratings on purpose. When you have real
-// reviews, add `rating` and `reviewCount` to each product and set this to true.
+// When you have real reviews, update rating / reviewCount below and set this to true.
 const SHOW_RATINGS = false;
 
 // The admin panel (Settings page) can change the shipping rules. These are the defaults.
@@ -54,30 +53,30 @@ const PLACEHOLDER_IMAGE =
 
 const SEED_PRODUCTS = [
 
-    { id: 1, name: "Glow Renewal Serum", category: "skincare", price: 38.00, oldPrice: null, badge: "New", image: "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1000&q=85"], description: "A lightweight, fast-absorbing serum formulated with bakuchiol and niacinamide to visibly renew skin's natural radiance overnight.", shortDescription: "Bakuchiol + niacinamide overnight glow serum.", stock: 42, featured: true },
+    { id: 1, name: "Glow Renewal Serum", category: "skincare", price: 38.00, oldPrice: null, rating: 4.9, reviewCount: 214, badge: "Bestseller", image: "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1000&q=85"], description: "A lightweight, fast-absorbing serum formulated with bakuchiol and niacinamide to visibly renew skin's natural radiance overnight.", shortDescription: "Bakuchiol + niacinamide overnight glow serum.", stock: 42, featured: true },
 
-    { id: 2, name: "Hydrogel Glass Skin Mask", category: "skincare", price: 24.00, oldPrice: 30.00, badge: "Sale", image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=1000&q=85"], description: "An intensely hydrating hydrogel mask that delivers a smooth, dewy 'glass skin' finish in just 15 minutes.", shortDescription: "15-minute dewy glass-skin hydration.", stock: 65, featured: false },
+    { id: 2, name: "Hydrogel Glass Skin Mask", category: "skincare", price: 24.00, oldPrice: 30.00, rating: 4.7, reviewCount: 132, badge: "Sale", image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=1000&q=85"], description: "An intensely hydrating hydrogel mask that delivers a smooth, dewy 'glass skin' finish in just 15 minutes.", shortDescription: "15-minute dewy glass-skin hydration.", stock: 65, featured: false },
 
-    { id: 3, name: "Scalp Renewal Treatment", category: "skincare", price: 32.00, oldPrice: null, badge: "New", image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=1000&q=85"], description: "A soothing scalp treatment infused with kojic acid and botanical extracts to balance and refresh the scalp.", shortDescription: "Kojic acid scalp balancing treatment.", stock: 30, featured: false },
+    { id: 3, name: "Scalp Renewal Treatment", category: "skincare", price: 32.00, oldPrice: null, rating: 4.6, reviewCount: 58, badge: "New", image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=1000&q=85"], description: "A soothing scalp treatment infused with kojic acid and botanical extracts to balance and refresh the scalp.", shortDescription: "Kojic acid scalp balancing treatment.", stock: 30, featured: false },
 
-    { id: 4, name: "Everyday Beauty Set", category: "beauty", price: 45.00, oldPrice: null, badge: null, image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1000&q=85"], description: "A curated five-piece beauty essentials set designed to simplify your everyday routine without sacrificing quality.", shortDescription: "Five-piece daily beauty essentials.", stock: 38, featured: true },
+    { id: 4, name: "Everyday Beauty Set", category: "beauty", price: 45.00, oldPrice: null, rating: 4.8, reviewCount: 176, badge: null, image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1000&q=85"], description: "A curated five-piece beauty essentials set designed to simplify your everyday routine without sacrificing quality.", shortDescription: "Five-piece daily beauty essentials.", stock: 38, featured: true },
 
-    { id: 5, name: "Collagen Beauty Powder", category: "beauty", price: 29.00, oldPrice: null, badge: "New", image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=1000&q=85"], description: "A hair, skin, and nails collagen blend that mixes seamlessly into your morning routine for a beauty boost from within.", shortDescription: "Hair, skin & nails collagen blend.", stock: 54, featured: false },
+    { id: 5, name: "Collagen Beauty Powder", category: "beauty", price: 29.00, oldPrice: null, rating: 4.5, reviewCount: 91, badge: "New", image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=1000&q=85"], description: "A hair, skin, and nails collagen blend that mixes seamlessly into your morning routine for a beauty boost from within.", shortDescription: "Hair, skin & nails collagen blend.", stock: 54, featured: false },
 
-    { id: 6, name: "Matte Finish Lip Set", category: "beauty", price: 26.00, oldPrice: 32.00, badge: "Sale", image: "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?auto=format&fit=crop&w=1000&q=85"], description: "A trio of long-wearing matte lip colors formulated to feel weightless while delivering full, buildable pigment.", shortDescription: "Trio of long-wear weightless mattes.", stock: 47, featured: false },
+    { id: 6, name: "Matte Finish Lip Set", category: "beauty", price: 26.00, oldPrice: 32.00, rating: 4.9, reviewCount: 203, badge: "Sale", image: "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?auto=format&fit=crop&w=1000&q=85"], description: "A trio of long-wearing matte lip colors formulated to feel weightless while delivering full, buildable pigment.", shortDescription: "Trio of long-wear weightless mattes.", stock: 47, featured: false },
 
-    { id: 7, name: "Aurelia Necklace", category: "jewelry", price: 52.00, oldPrice: null, badge: "New", image: "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=1000&q=85"], description: "A delicate 18k gold-plated layering necklace with a hand-set pendant, designed to be worn alone or stacked.", shortDescription: "18k gold-plated layering necklace.", stock: 25, featured: true },
+    { id: 7, name: "Aurelia Necklace", category: "jewelry", price: 52.00, oldPrice: null, rating: 5.0, reviewCount: 89, badge: "New", image: "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=1000&q=85"], description: "A delicate 18k gold-plated layering necklace with a hand-set pendant, designed to be worn alone or stacked.", shortDescription: "18k gold-plated layering necklace.", stock: 25, featured: true },
 
-    { id: 8, name: "Stainless Steel Hoop Set", category: "jewelry", price: 34.00, oldPrice: null, badge: null, image: "https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=1000&q=85"], description: "A waterproof, tarnish-resistant stainless steel hoop trio built for everyday wear, from workouts to nights out.", shortDescription: "Waterproof tarnish-resistant hoop trio.", stock: 40, featured: false },
+    { id: 8, name: "Stainless Steel Hoop Set", category: "jewelry", price: 34.00, oldPrice: null, rating: 4.7, reviewCount: 64, badge: null, image: "https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=1000&q=85"], description: "A waterproof, tarnish-resistant stainless steel hoop trio built for everyday wear, from workouts to nights out.", shortDescription: "Waterproof tarnish-resistant hoop trio.", stock: 40, featured: false },
 
-    { id: 9, name: "Charm Build-Your-Own Bracelet", category: "jewelry", price: 41.00, oldPrice: 48.00, badge: "Sale", image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=1000&q=85"], description: "Start with a base chain and add personalized charms one at a time to build a bracelet that's entirely your own.", shortDescription: "Customizable charm-by-charm bracelet.", stock: 33, featured: false },
+    { id: 9, name: "Charm Build-Your-Own Bracelet", category: "jewelry", price: 41.00, oldPrice: 48.00, rating: 4.8, reviewCount: 112, badge: "Sale", image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=1000&q=85"], description: "Start with a base chain and add personalized charms one at a time to build a bracelet that's entirely your own.", shortDescription: "Customizable charm-by-charm bracelet.", stock: 33, featured: false },
 
     // Moved to jewelry (pearl earrings). The SALE badge was removed because there is no old price.
-    { id: 10, name: "Luna Pearl Earrings", category: "jewelry", price: 29.00, oldPrice: null, badge: null, image: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1000&q=85"], description: "Freshwater pearl drop earrings with a gold-finished hook, light enough for all-day wear.", shortDescription: "Freshwater pearl drops, gold-finished.", stock: 36, featured: true },
+    { id: 10, name: "Luna Pearl Earrings", category: "jewelry", price: 29.00, oldPrice: null, rating: 4.9, reviewCount: 147, badge: null, image: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=1000&q=85"], description: "Freshwater pearl drop earrings with a gold-finished hook, light enough for all-day wear.", shortDescription: "Freshwater pearl drops, gold-finished.", stock: 36, featured: true },
 
-    { id: 11, name: "Silk Hair Scarf", category: "accessories", price: 22.00, oldPrice: null, badge: "New", image: "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=1000&q=85"], description: "A soft, lightweight silk-blend scarf that doubles as a hair accessory, neck scarf, or bag charm.", shortDescription: "Multi-way silk-blend scarf.", stock: 48, featured: false },
+    { id: 11, name: "Silk Hair Scarf", category: "accessories", price: 22.00, oldPrice: null, rating: 4.6, reviewCount: 53, badge: "New", image: "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=1000&q=85"], description: "A soft, lightweight silk-blend scarf that doubles as a hair accessory, neck scarf, or bag charm.", shortDescription: "Multi-way silk-blend scarf.", stock: 48, featured: false },
 
-    { id: 12, name: "Structured Mini Tote", category: "accessories", price: 58.00, oldPrice: 68.00, badge: "Sale", image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=1000&q=85"], description: "A structured vegan-leather mini tote with an interior pocket, sized perfectly for daily essentials.", shortDescription: "Structured vegan-leather mini tote.", stock: 21, featured: false }
+    { id: 12, name: "Structured Mini Tote", category: "accessories", price: 58.00, oldPrice: 68.00, rating: 4.8, reviewCount: 97, badge: "Sale", image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=1000&q=85"], description: "A structured vegan-leather mini tote with an interior pocket, sized perfectly for daily essentials.", shortDescription: "Structured vegan-leather mini tote.", stock: 21, featured: false }
 
 ];
 
@@ -181,18 +180,13 @@ function getFeaturedProducts(limit = 4) {
 /* ---------- formatting & safety helpers ---------- */
 
 function formatPrice(price) {
-    return `${LUNEVIA_CONFIG.currencySymbol}${Number(price).toFixed(2)}`;
+    return `$${Number(price).toFixed(2)}`;
 }
 
 // "$75" for whole numbers, "$7.50" otherwise
 function formatPriceShort(price) {
     const number = Number(price);
-    return Number.isInteger(number) ? `${LUNEVIA_CONFIG.currencySymbol}${number}` : formatPrice(number);
-}
-
-// Rounds to whole cents so sums like 19.99 + 55.01 never end up as 74.99999999999999.
-function roundMoney(value) {
-    return Math.round((Number(value) || 0) * 100) / 100;
+    return Number.isInteger(number) ? `$${number}` : formatPrice(number);
 }
 
 // Always escape text before putting it into innerHTML.
@@ -210,61 +204,9 @@ function capitalize(text) {
 /* ---------- shipping ---------- */
 
 function getShippingCost(subtotal) {
-    const amount = roundMoney(subtotal);
+    const amount = Number(subtotal) || 0;
     if (amount <= 0 || amount >= FREE_SHIPPING_THRESHOLD) return 0;
     return FLAT_SHIPPING_FEE;
-}
-
-// One place for the bag maths, used by the cart page and the checkout page.
-// Products that no longer exist in the catalogue are ignored.
-function calculateCartTotals(cart) {
-    let subtotalCents = 0;
-    let itemCount = 0;
-
-    (cart || []).forEach((item) => {
-        const product = getProductById(item.id);
-        const quantity = Math.max(0, Math.floor(Number(item.quantity)) || 0);
-        if (!product || quantity === 0) return;
-
-        subtotalCents += Math.round(product.price * 100) * quantity;
-        itemCount += quantity;
-    });
-
-    const subtotal = subtotalCents / 100;
-    const shipping = getShippingCost(subtotal);
-
-    return { subtotal: subtotal, shipping: shipping, total: roundMoney(subtotal + shipping), itemCount: itemCount };
-}
-
-
-/* ---------- responsive images ---------- */
-
-// The sample photos come from Unsplash, which can resize on request (?w=…).
-// Photos on any other host (your own files, uploaded photos) are used as they are.
-const RESIZABLE_IMAGE_HOST = "images.unsplash.com";
-const CARD_IMAGE_WIDTHS = [400, 600, 800];
-
-function isResizableImage(url) {
-    try {
-        return new URL(url).hostname === RESIZABLE_IMAGE_HOST;
-    } catch (error) {
-        return false;
-    }
-}
-
-function resizeImageUrl(url, width) {
-    if (!isResizableImage(url)) return url;
-
-    const resized = new URL(url);
-    resized.searchParams.set("w", String(width));
-    resized.searchParams.set("q", "75");
-    return resized.toString();
-}
-
-// srcset text, or "" when the image cannot be resized
-function buildImageSrcset(url, widths = CARD_IMAGE_WIDTHS) {
-    if (!isResizableImage(url)) return "";
-    return widths.map((width) => `${resizeImageUrl(url, width)} ${width}w`).join(", ");
 }
 
 
@@ -290,10 +232,6 @@ function buildRatingHtml(product) {
 
 function buildProductCard(product, options = {}) {
     const colClass = options.colClass || "col-12 col-sm-6 col-lg-4";
-    // how wide the card is on screen, so the browser can pick the right file size
-    // h3 by default (cards sit under a section heading); pages whose heading is the h1 pass "h2"
-    const headingTag = options.headingTag === "h2" ? "h2" : "h3";
-    const imageSizes = options.sizes || "(min-width: 992px) 33vw, (min-width: 576px) 50vw, 100vw";
     const wishlist = typeof getWishlist === "function" ? getWishlist() : [];
     const isWishlisted = wishlist.includes(String(product.id));
     const name = escapeHtml(product.name);
@@ -306,10 +244,6 @@ function buildProductCard(product, options = {}) {
     const oldPriceHtml = product.oldPrice
         ? `<s class="old-price">${formatPrice(product.oldPrice)}</s>`
         : "";
-
-    const srcset = buildImageSrcset(product.image);
-    const imageSrc = resizeImageUrl(product.image, 800);
-    const srcsetAttrs = srcset ? ` srcset="${escapeHtml(srcset)}" sizes="${escapeHtml(imageSizes)}"` : "";
 
     const cartButton = product.stock > 0
         ? `<button type="button" class="btn-add-to-cart-shop" data-add-to-cart="${product.id}">Add to Bag <i class="bi bi-bag"></i></button>`
@@ -324,13 +258,13 @@ function buildProductCard(product, options = {}) {
                         <i class="bi ${isWishlisted ? "bi-heart-fill" : "bi-heart"}"></i>
                     </button>
                     <a href="${link}" class="product-image-link" tabindex="-1" aria-hidden="true">
-                        <img src="${escapeHtml(imageSrc)}"${srcsetAttrs} width="800" height="840" alt="${name}" loading="lazy" decoding="async">
+                        <img src="${escapeHtml(product.image)}" alt="${name}" loading="lazy" decoding="async">
                     </a>
-                    <a href="${link}" class="quick-add">View Product<span class="visually-hidden">: ${name}</span></a>
+                    <a href="${link}" class="quick-add">View Product</a>
                 </div>
                 <div class="product-info">
                     <p class="product-category">${escapeHtml(product.category.toUpperCase())}</p>
-                    <${headingTag}><a href="${link}">${name}</a></${headingTag}>
+                    <h3><a href="${link}">${name}</a></h3>
                     <div class="product-bottom">
                         <span class="product-price">
                             ${formatPrice(product.price)}

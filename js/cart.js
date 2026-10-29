@@ -22,17 +22,17 @@
         if (!product) return "";
 
         const name = escapeHtml(product.name);
-        const lineTotal = roundMoney(product.price * cartItem.quantity);
+        const lineTotal = product.price * cartItem.quantity;
         const atMaxStock = cartItem.quantity >= product.stock;
 
         return `
             <div class="cart-row" data-cart-id="${product.id}">
                 <div class="cart-row-image">
-                    <img src="${escapeHtml(resizeImageUrl(product.image, 300))}" width="120" height="150" alt="${name}" loading="lazy">
+                    <img src="${escapeHtml(product.image)}" alt="${name}" loading="lazy">
                 </div>
                 <div class="cart-row-info">
                     <p class="cart-row-category">${escapeHtml(product.category.toUpperCase())}</p>
-                    <h2><a href="product.html?id=${product.id}">${name}</a></h2>
+                    <h3><a href="product.html?id=${product.id}">${name}</a></h3>
                     <span class="cart-row-price">${formatPrice(product.price)}</span>
                     <button type="button" class="cart-row-remove" data-remove-id="${product.id}" aria-label="Remove ${name} from your bag">
                         <i class="bi bi-trash"></i> Remove
@@ -55,25 +55,38 @@
 
         if (subtotal <= 0) {
             cartShippingNoteEl.textContent = "";
-        } else if (roundMoney(subtotal) >= FREE_SHIPPING_THRESHOLD) {
+        } else if (subtotal >= FREE_SHIPPING_THRESHOLD) {
             cartShippingNoteEl.textContent = "You've unlocked free shipping.";
         } else {
-            cartShippingNoteEl.textContent = `Add ${formatPrice(roundMoney(FREE_SHIPPING_THRESHOLD - subtotal))} more to get free shipping.`;
+            cartShippingNoteEl.textContent = `Add ${formatPrice(FREE_SHIPPING_THRESHOLD - subtotal)} more to get free shipping.`;
         }
     }
 
     function updateCartSummary(cart) {
-        const totals = calculateCartTotals(cart);
+        let subtotal = 0;
+        let itemCount = 0;
 
-        if (cartSubtotalEl) cartSubtotalEl.textContent = formatPrice(totals.subtotal);
-        if (cartShippingEl) cartShippingEl.textContent = totals.shipping === 0 ? "Free" : formatPrice(totals.shipping);
-        if (cartTotalEl) cartTotalEl.textContent = formatPrice(totals.total);
+        cart.forEach((item) => {
+            const product = getProductById(item.id);
+
+            if (product) {
+                subtotal += product.price * item.quantity;
+                itemCount += item.quantity;
+            }
+        });
+
+        const shipping = getShippingCost(subtotal);
+        const total = subtotal + shipping;
+
+        if (cartSubtotalEl) cartSubtotalEl.textContent = formatPrice(subtotal);
+        if (cartShippingEl) cartShippingEl.textContent = shipping === 0 ? "Free" : formatPrice(shipping);
+        if (cartTotalEl) cartTotalEl.textContent = formatPrice(total);
 
         if (cartItemCountEl) {
-            cartItemCountEl.textContent = `${totals.itemCount} ${totals.itemCount === 1 ? "item" : "items"}`;
+            cartItemCountEl.textContent = `${itemCount} ${itemCount === 1 ? "item" : "items"}`;
         }
 
-        updateShippingNote(totals.subtotal);
+        updateShippingNote(subtotal);
     }
 
     function renderCart() {

@@ -1,10 +1,5 @@
 /* =========================================================
    LUNÉVIA — CHECKOUT PAGE LOGIC
-
-   DEMO CHECKOUT: no payment is taken. The order is saved in
-   this browser (so the confirmation, account, tracking and demo
-   admin pages work). It is also sent to LUNEVIA_CONFIG.formEndpoint
-   ONLY when the buyer has configured one (see js/config.js).
 ========================================================= */
 
 (function () {
@@ -36,11 +31,11 @@
         return `
             <div class="checkout-row">
                 <div class="checkout-row-image">
-                    <img src="${escapeHtml(resizeImageUrl(product.image, 200))}" width="64" height="80" alt="${name}">
+                    <img src="${escapeHtml(product.image)}" alt="${name}">
                     <span class="checkout-row-qty-badge">${cartItem.quantity}</span>
                 </div>
                 <div class="checkout-row-info">
-                    <h3>${name}</h3>
+                    <h4>${name}</h4>
                     <p>${escapeHtml(product.category.toUpperCase())}</p>
                 </div>
                 <div class="checkout-row-price">
@@ -48,6 +43,19 @@
                 </div>
             </div>
         `;
+    }
+
+    function getCartTotals(cart) {
+        let subtotal = 0;
+
+        cart.forEach((item) => {
+            const product = getProductById(item.id);
+            if (product) subtotal += product.price * item.quantity;
+        });
+
+        const shipping = getShippingCost(subtotal);
+
+        return { subtotal: subtotal, shipping: shipping, total: subtotal + shipping };
     }
 
     function renderCheckoutSummary() {
@@ -66,7 +74,7 @@
             checkoutItemsContainer.innerHTML = cart.map((item) => buildCheckoutRow(item)).join("");
         }
 
-        const totals = calculateCartTotals(cart);
+        const totals = getCartTotals(cart);
 
         if (checkoutSubtotalEl) checkoutSubtotalEl.textContent = formatPrice(totals.subtotal);
         if (checkoutShippingEl) checkoutShippingEl.textContent = totals.shipping === 0 ? "Free" : formatPrice(totals.shipping);
@@ -103,6 +111,33 @@
         { id: "checkoutZip", check: required("Enter your postal code.") },
         { id: "checkoutCountry", check: required("Choose your country.") }
     ];
+
+    function setFieldError(id, message) {
+        const field = document.getElementById(id);
+        if (!field) return;
+
+        const holder = field.closest(".form-group") || field.closest(".checkout-terms") || field.parentElement;
+        let error = holder.querySelector(".field-error");
+
+        if (message) {
+            if (!error) {
+                error = document.createElement("p");
+                error.className = "field-error";
+                error.id = `${id}Error`;
+                holder.appendChild(error);
+            }
+
+            error.textContent = message;
+            holder.classList.add("has-error");
+            field.setAttribute("aria-invalid", "true");
+            field.setAttribute("aria-describedby", error.id);
+        } else {
+            if (error) error.remove();
+            holder.classList.remove("has-error");
+            field.removeAttribute("aria-invalid");
+            field.removeAttribute("aria-describedby");
+        }
+    }
 
     // returns the id of the first field with a problem, or null if all is well
     function validateForm() {
@@ -164,7 +199,7 @@
             });
         });
 
-        const totals = calculateCartTotals(cart);
+        const totals = getCartTotals(cart);
 
         return {
             number: getNextOrderNumber(orders),
@@ -181,9 +216,8 @@
                 zip: getInputValue("checkoutZip"),
                 country: getInputValue("checkoutCountry")
             },
-            // card payments are not available, so every order is cash on delivery
+            // card payments are not available yet, so every order is cash on delivery
             payment: "cod",
-            demo: IS_DEMO_MODE,
             notes: getInputValue("checkoutNotes"),
             items: items,
             subtotal: totals.subtotal,
@@ -210,12 +244,9 @@
 
         if (checkoutForm.dataset.submitting === "true") return;
 
-        const honeypot = checkoutForm.querySelector('[name="bot-field"]');
-        if (honeypot && honeypot.value) return; // a bot filled the hidden field
-
         const cart = getCart();
         if (cart.length === 0) {
-            showToast("Your bag is empty. Add an item before checking out.", "error");
+            showToast("Your cart is empty. Add an item before checking out.", "error");
             return;
         }
 
@@ -230,46 +261,20 @@
         const orders = readList("luneviaOrders");
         const order = createOrder(cart, orders);
         if (order.items.length === 0) {
-            showToast("Your bag has no valid products. Please review it before checking out.", "error");
+            showToast("Your cart has no valid products. Please review it before checking out.", "error");
             return;
         }
 
         checkoutForm.dataset.submitting = "true";
         setPlacingOrder(true);
 
-        // Live mode only: hand the order to the configured receiving service first.
-        // The confirmation page is never shown for an order the service did not accept.
-        if (!IS_DEMO_MODE) {
-            try {
-                await sendToFormEndpoint("order", {
-                    orderNumber: order.number,
-                    date: order.date,
-                    payment: "Cash on Delivery",
-                    customer: order.customer,
-                    notes: order.notes,
-                    items: order.items.map((item) => ({ id: item.id, name: item.name, quantity: item.quantity, unitPrice: item.price })),
-                    subtotal: order.subtotal,
-                    shipping: order.shipping,
-                    total: order.total
-                });
-            } catch (error) {
-                console.error("Order submission failed:", error);
-                checkoutForm.dataset.submitting = "false";
-                setPlacingOrder(false);
-                showToast("We could not submit your order. Nothing was placed. Please try again later.", "error");
-                return;
-            }
-        }
-
-        // The local copy powers the confirmation, account, tracking and demo admin pages.
-        // It is not a shared database.
+        // This is a front-end demo: orders are saved only in this browser.
+        // A real store needs a backend or a connected order-management service.
         orders.push(order);
         if (!writeList("luneviaOrders", orders)) {
             checkoutForm.dataset.submitting = "false";
             setPlacingOrder(false);
-            showToast(IS_DEMO_MODE
-                ? "This browser could not save the demo order. Please allow site storage and try again."
-                : `Your order was submitted, but this browser could not save the confirmation. Order reference: ${order.number}. Do not submit it again.`, "error");
+            showToast("The demo order could not be saved in this browser. No order was recorded.", "error");
             return;
         }
 
@@ -279,7 +284,7 @@
         try {
             sessionStorage.setItem("luneviaLastOrder", order.number);
         } catch (error) {
-            // the confirmation page can still find the order in local storage
+            // Confirmation still uses local order storage when the session storage is unavailable.
         }
 
         window.location.href = `order-confirmation.html?order=${encodeURIComponent(order.number)}`;

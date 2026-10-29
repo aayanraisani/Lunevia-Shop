@@ -2,11 +2,10 @@
    LUNÉVIA — ACCOUNTS & ORDERS (store.js)
    Load after products.js and main.js.
 
-   IMPORTANT: accounts and orders live in this browser only
-   (localStorage). That is fine for a demo, but real customers
-   need a server-side backend that checks passwords, stores
-   accounts and orders in a database, and sends emails. No
-   backend is included in this template.
+   IMPORTANT: for now, accounts and orders live in this
+   browser only (localStorage). That is fine for building and
+   testing, but real customers need the Node.js + MySQL
+   backend, where passwords are checked on the server.
 ========================================================= */
 
 
@@ -313,7 +312,7 @@ function getOrderItemImage(item) {
 function buildOrderLinesHtml(order) {
     const lines = (order.items || []).map((item) => `
         <li class="order-line">
-            <div class="order-line-image"><img src="${escapeHtml(resizeImageUrl(getOrderItemImage(item), 200))}" width="64" height="80" alt="${escapeHtml(item.name)}" loading="lazy"></div>
+            <div class="order-line-image"><img src="${escapeHtml(getOrderItemImage(item))}" alt="${escapeHtml(item.name)}" loading="lazy"></div>
             <div class="order-line-info">
                 <strong>${escapeHtml(item.name)}</strong>
                 <span>Qty ${Number(item.quantity) || 1} × ${formatPrice(item.price)}</span>

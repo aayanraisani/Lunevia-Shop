@@ -24,7 +24,7 @@
             <article class="order-card">
                 <div class="order-card-head">
                     <div>
-                        <h2>Order ${escapeHtml(order.number)}</h2>
+                        <h3>Order ${escapeHtml(order.number)}</h3>
                         <span class="order-date">Placed on ${escapeHtml(formatOrderDate(order.date))}</span>
                     </div>
                     ${buildStatusBadge(order.status)}

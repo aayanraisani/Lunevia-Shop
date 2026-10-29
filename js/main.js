@@ -1,6 +1,6 @@
 /* =========================================================
    LUNÉVIA — MAIN JAVASCRIPT (loaded on every page)
-   Needs config.js and products.js to be loaded first.
+   Needs products.js to be loaded first.
 ========================================================= */
 
 
@@ -33,111 +33,61 @@ function isValidEmail(email) {
 
 
 
-/* ---------- form delivery: demo mode or a configured endpoint ---------- */
+/* ---------- local demo-form submission helper ---------- */
 
-// Sends a form to LUNEVIA_CONFIG.formEndpoint as JSON (see js/config.js).
-// It only resolves when the service answers with a 2xx status, so a success
-// message is never shown for data that was not accepted.
-async function sendToFormEndpoint(formName, fields) {
-    const response = await fetch(LUNEVIA_CONFIG.formEndpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify(Object.assign({ form: formName }, fields))
-    });
+/*
+ * This project is a static front-end demo deployed on Vercel.
+ * Without a backend or form provider, submissions can only be stored in the
+ * current browser. The admin demo reads these same localStorage records.
+ */
+async function submitDemoForm(form) {
+    if (!(form instanceof HTMLFormElement)) throw new Error("Form was not found.");
 
-    if (!response.ok) {
-        throw new Error(`The form service answered with status ${response.status}.`);
-    }
+    const formName = String(form.getAttribute("name") || "").trim();
+    const formData = new FormData(form);
 
-    return response;
-}
+    if (formName === "contact") {
+        const message = {
+            id: Date.now(),
+            name: String(formData.get("name") || "").trim(),
+            email: String(formData.get("email") || "").trim().toLowerCase(),
+            subject: String(formData.get("subject") || "").trim(),
+            message: String(formData.get("message") || "").trim(),
+            date: new Date().toISOString(),
+            read: false
+        };
 
-// The demo admin panel reads these two lists. Only demo mode writes to them.
-function saveDemoMessage(entry) {
-    const messages = readList("luneviaMessages");
-    messages.push(Object.assign({ id: Date.now(), date: new Date().toISOString(), read: false }, entry));
-    return writeList("luneviaMessages", messages);
-}
-
-function saveDemoSubscriber(email) {
-    const subscribers = readList("luneviaSubscribers");
-    if (!subscribers.includes(email)) subscribers.push(email);
-    return writeList("luneviaSubscribers", subscribers);
-}
-
-// Shows a message under a form. The element is a polite live region, so screen readers announce it.
-function showFormStatus(form, message, type) {
-    let box = form.querySelector("[data-form-status]");
-
-    if (!box) {
-        box = document.createElement("p");
-        box.setAttribute("data-form-status", "");
-        box.setAttribute("role", "status");
-        form.appendChild(box);
-    }
-
-    box.className = message ? `form-status form-status-${type || "info"}` : "form-status";
-    box.textContent = message || "";
-}
-
-// Puts an error message under a field (or clears it when message is empty).
-// Works with any field inside a .form-group, and with the checkout terms box.
-function setFieldError(id, message) {
-    const field = document.getElementById(id);
-    if (!field) return;
-
-    const holder = field.closest(".form-group") || field.closest(".checkout-terms") || field.parentElement;
-    let error = holder.querySelector(".field-error");
-
-    if (message) {
-        if (!error) {
-            error = document.createElement("p");
-            error.className = "field-error";
-            error.id = `${id}Error`;
-            holder.appendChild(error);
+        if (!message.name || !isValidEmail(message.email) || !message.subject || !message.message) {
+            throw new Error("Please complete all contact fields with valid details.");
         }
 
-        error.textContent = message;
-        holder.classList.add("has-error");
-        field.setAttribute("aria-invalid", "true");
-        field.setAttribute("aria-describedby", error.id);
-    } else {
-        if (error) error.remove();
-        holder.classList.remove("has-error");
-        field.removeAttribute("aria-invalid");
-        field.removeAttribute("aria-describedby");
-    }
-}
+        const messages = readList("luneviaMessages");
+        while (messages.some((item) => Number(item.id) === message.id)) message.id += 1;
+        messages.unshift(message);
 
-// Elements marked data-demo-notice are shown only in demo mode,
-// elements marked data-live-notice only when a form endpoint is configured.
-function applyDemoNotices() {
-    document.querySelectorAll("[data-demo-notice]").forEach((element) => { element.hidden = !IS_DEMO_MODE; });
-    document.querySelectorAll("[data-live-notice]").forEach((element) => { element.hidden = IS_DEMO_MODE; });
-}
-
-// Common submit handling: blocks double submits, shows a busy label, and always restores the button.
-async function runFormSubmit(form, busyText, task) {
-    if (form.dataset.submitting === "true") return;
-
-    const button = form.querySelector('button[type="submit"]');
-    const originalHtml = button ? button.innerHTML : "";
-
-    form.dataset.submitting = "true";
-    if (button) {
-        button.disabled = true;
-        button.textContent = busyText;
-    }
-
-    try {
-        await task();
-    } finally {
-        form.dataset.submitting = "false";
-        if (button) {
-            button.disabled = false;
-            button.innerHTML = originalHtml;
+        if (!writeList("luneviaMessages", messages)) {
+            throw new Error("Browser storage is unavailable. The message was not saved.");
         }
+
+        return { ok: true, duplicate: false };
     }
+
+    if (formName === "newsletter") {
+        const email = String(formData.get("email") || "").trim().toLowerCase();
+        if (!isValidEmail(email)) throw new Error("Please enter a valid email address.");
+
+        const subscribers = readList("luneviaSubscribers");
+        if (subscribers.includes(email)) return { ok: true, duplicate: true };
+        subscribers.push(email);
+
+        if (!writeList("luneviaSubscribers", subscribers)) {
+            throw new Error("Browser storage is unavailable. The subscription was not saved.");
+        }
+
+        return { ok: true, duplicate: false };
+    }
+
+    throw new Error("This form is not supported by the local demo handler.");
 }
 
 /* ---------- toast messages ---------- */
@@ -187,46 +137,12 @@ function flashButton(button, text) {
 }
 
 
-/* ---------- mobile menu ---------- */
-
-// Plain replacement for Bootstrap's collapse plugin. Bootstrap's CSS already
-// hides and shows .navbar-collapse, so we only toggle the "show" class.
-function initNavToggle() {
-    const toggler = document.querySelector("[data-nav-toggle]");
-    const menu = toggler ? document.getElementById(toggler.getAttribute("aria-controls")) : null;
-    if (!toggler || !menu) return;
-
-    function setOpen(isOpen) {
-        menu.classList.toggle("show", isOpen);
-        toggler.setAttribute("aria-expanded", String(isOpen));
-        toggler.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
-    }
-
-    toggler.addEventListener("click", () => setOpen(!menu.classList.contains("show")));
-
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && menu.classList.contains("show")) {
-            setOpen(false);
-            toggler.focus();
-        }
-    });
-
-    // the desktop layout always shows the links, so reset the mobile state
-    window.matchMedia("(min-width: 992px)").addEventListener("change", (event) => {
-        if (event.matches) setOpen(false);
-    });
-}
-
-
 /* ---------- search overlay ---------- */
-
-let searchOpener = null;
 
 function openSearch() {
     const overlay = document.getElementById("searchOverlay");
     if (!overlay) return;
 
-    searchOpener = document.activeElement;
     overlay.classList.add("active");
     overlay.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
@@ -234,7 +150,7 @@ function openSearch() {
     setTimeout(() => {
         const input = document.getElementById("searchInput");
         if (input) input.focus();
-    }, 50);
+    }, 300);
 }
 
 function closeSearch() {
@@ -245,12 +161,11 @@ function closeSearch() {
     overlay.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
 
-    const returnTo = searchOpener || document.getElementById("searchButton");
-    if (returnTo && returnTo.focus) returnTo.focus();
+    const button = document.getElementById("searchButton");
+    if (button) button.focus();
 }
 
 function initSearch() {
-    const overlay = document.getElementById("searchOverlay");
     const button = document.getElementById("searchButton");
     const closeButton = document.getElementById("searchClose");
     const input = document.getElementById("searchInput");
@@ -259,27 +174,7 @@ function initSearch() {
     if (closeButton) closeButton.addEventListener("click", closeSearch);
 
     document.addEventListener("keydown", (event) => {
-        if (!overlay || !overlay.classList.contains("active")) return;
-
-        if (event.key === "Escape") {
-            closeSearch();
-            return;
-        }
-
-        // keep Tab inside the dialog while it is open
-        if (event.key === "Tab") {
-            const focusable = overlay.querySelectorAll("button, input");
-            const first = focusable[0];
-            const last = focusable[focusable.length - 1];
-
-            if (event.shiftKey && document.activeElement === first) {
-                event.preventDefault();
-                last.focus();
-            } else if (!event.shiftKey && document.activeElement === last) {
-                event.preventDefault();
-                first.focus();
-            }
-        }
+        if (event.key === "Escape") closeSearch();
     });
 
     if (input) {
@@ -498,41 +393,41 @@ function initNewsletter() {
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
+        if (form.dataset.submitting === "true") return;
 
         const emailInput = document.getElementById("newsletterEmail");
         if (!emailInput) return;
 
-        const honeypot = form.querySelector('[name="bot-field"]');
-        if (honeypot && honeypot.value) return; // a bot filled the hidden field
-
         const email = emailInput.value.trim().toLowerCase();
-
         if (!isValidEmail(email)) {
-            emailInput.setAttribute("aria-invalid", "true");
-            showFormStatus(form, "Please enter a valid email address, like name@example.com.", "error");
+            showToast("Please enter a valid email address.", "error");
             emailInput.focus();
             return;
         }
 
-        emailInput.removeAttribute("aria-invalid");
-        showFormStatus(form, "");
+        const button = form.querySelector('button[type="submit"]');
+        const originalText = button ? button.innerHTML : "";
+        form.dataset.submitting = "true";
+        if (button) {
+            button.disabled = true;
+            button.textContent = "Submitting…";
+        }
+        emailInput.value = email;
 
-        await runFormSubmit(form, "Submitting…", async () => {
-            try {
-                if (IS_DEMO_MODE) {
-                    if (!saveDemoSubscriber(email)) throw new Error("storage");
-                    showFormStatus(form, "Demo mode: nothing was sent and no subscription was created. Your address was saved in this browser only.", "info");
-                } else {
-                    await sendToFormEndpoint("newsletter", { email: email });
-                    showFormStatus(form, "Thank you. You are subscribed.", "success");
-                }
-
-                form.reset();
-            } catch (error) {
-                console.error("Newsletter submission failed:", error);
-                showFormStatus(form, "We could not submit your subscription. Please try again later.", "error");
+        try {
+            const result = await submitDemoForm(form);
+            showToast(result.duplicate ? "This email is already saved in the local demo list." : "Demo subscription saved in this browser only.", result.duplicate ? "error" : "success");
+            form.reset();
+        } catch (error) {
+            console.error("Newsletter submission failed:", error);
+            showToast("We couldn't submit your subscription. Please try again later.", "error");
+        } finally {
+            form.dataset.submitting = "false";
+            if (button) {
+                button.disabled = false;
+                button.innerHTML = originalText;
             }
-        });
+        }
     });
 }
 
@@ -542,58 +437,57 @@ function initContactForm() {
     const form = document.getElementById("contactForm");
     if (!form) return;
 
-    const fields = ["contactName", "contactEmail", "contactSubject", "contactMessage"];
-
-    // clear a field's message as soon as the visitor edits it
-    form.addEventListener("input", (event) => {
-        if (fields.includes(event.target.id)) setFieldError(event.target.id, "");
-    });
-
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
+        if (form.dataset.submitting === "true") return;
 
-        const honeypot = form.querySelector('[name="bot-field"]');
-        if (honeypot && honeypot.value) return; // a bot filled the hidden field
+        const nameInput = document.getElementById("contactName");
+        const emailInput = document.getElementById("contactEmail");
+        const subjectInput = document.getElementById("contactSubject");
+        const messageInput = document.getElementById("contactMessage");
+        if (!nameInput || !emailInput || !subjectInput || !messageInput) return;
 
-        const values = {
-            name: document.getElementById("contactName").value.trim(),
-            email: document.getElementById("contactEmail").value.trim().toLowerCase(),
-            subject: document.getElementById("contactSubject").value.trim(),
-            message: document.getElementById("contactMessage").value.trim()
-        };
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim().toLowerCase();
+        const subject = subjectInput.value.trim();
+        const message = messageInput.value.trim();
 
-        const problems = [
-            ["contactName", values.name ? "" : "Enter your name."],
-            ["contactEmail", isValidEmail(values.email) ? "" : "Enter a valid email address, like name@example.com."],
-            ["contactSubject", values.subject ? "" : "Enter a subject."],
-            ["contactMessage", values.message ? "" : "Write your message."]
-        ];
-
-        problems.forEach(([id, message]) => setFieldError(id, message));
-        showFormStatus(form, "");
-
-        const firstProblem = problems.find(([, message]) => message);
-        if (firstProblem) {
-            document.getElementById(firstProblem[0]).focus();
+        if (!name || !subject || !message) {
+            showToast("Please fill in every field.", "error");
+            return;
+        }
+        if (!isValidEmail(email)) {
+            showToast("Please enter a valid email address.", "error");
+            emailInput.focus();
             return;
         }
 
-        await runFormSubmit(form, "Sending…", async () => {
-            try {
-                if (IS_DEMO_MODE) {
-                    if (!saveDemoMessage(values)) throw new Error("storage");
-                    showFormStatus(form, "Demo mode: your message was not sent to anyone. It was saved in this browser only.", "info");
-                } else {
-                    await sendToFormEndpoint("contact", values);
-                    showFormStatus(form, "Thank you. Your message has been sent.", "success");
-                }
+        const button = form.querySelector('button[type="submit"]');
+        const originalText = button ? button.innerHTML : "";
+        form.dataset.submitting = "true";
+        if (button) {
+            button.disabled = true;
+            button.textContent = "Sending…";
+        }
+        nameInput.value = name;
+        emailInput.value = email;
+        subjectInput.value = subject;
+        messageInput.value = message;
 
-                form.reset();
-            } catch (error) {
-                console.error("Contact form submission failed:", error);
-                showFormStatus(form, "We could not send your message. Please try again later.", "error");
+        try {
+            await submitDemoForm(form);
+            showToast("Demo message saved in this browser only.");
+            form.reset();
+        } catch (error) {
+            console.error("Contact form submission failed:", error);
+            showToast("We couldn't submit your message. Please try again later.", "error");
+        } finally {
+            form.dataset.submitting = "false";
+            if (button) {
+                button.disabled = false;
+                button.innerHTML = originalText;
             }
-        });
+        }
     });
 }
 
@@ -671,7 +565,7 @@ window.addEventListener("pageshow", (event) => {
 });
 
 
-/* ---------- store settings (changed in the demo admin panel) ---------- */
+/* ---------- store settings (changed in the admin panel) ---------- */
 
 // text like "free shipping over <lv-amount data-amount="threshold">$75</lv-amount>" follows the admin settings
 function applyStoreSettings() {
@@ -687,8 +581,6 @@ function applyStoreSettings() {
 /* ---------- start ---------- */
 
 applyStoreSettings();
-applyDemoNotices();
-initNavToggle();
 sanitizeCart();
 sanitizeWishlist();
 initSearch();

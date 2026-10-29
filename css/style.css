@@ -8,10 +8,10 @@
     --lv-white: #ffffff;
 
     --lv-text: #272421;
-    --lv-text-soft: #66605a;
-    --lv-text-light: #706a64;
+    --lv-text-soft: #706a64;
+    --lv-text-light: #98918a;
 
-    --lv-accent: #846554;
+    --lv-accent: #8d6d5b;
     --lv-accent-dark: #705344;
 
     --lv-border: #e4ddd6;
@@ -166,7 +166,7 @@ button {
 .navbar-actions {
     display: flex;
     align-items: center;
-    gap: 0;
+    gap: 17px;
 }
 
 .nav-action {
@@ -174,8 +174,8 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 25px;
+    height: 30px;
     background: transparent;
     color: var(--lv-text);
     font-size: 18px;
@@ -188,18 +188,17 @@ button {
 
 .nav-count {
     position: absolute;
-    top: 4px;
-    right: 2px;
+    top: -3px;
+    right: -7px;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 18px;
-    height: 18px;
-    padding: 0 4px;
-    border-radius: 9px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
     background: var(--lv-text);
     color: #fff;
-    font-size: 11px;
+    font-size: 8px;
     font-weight: 700;
 }
 
@@ -298,7 +297,7 @@ button {
 .eyebrow {
     margin-bottom: 16px;
     color: var(--lv-accent);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -417,7 +416,7 @@ button {
     display: block;
     margin-bottom: 2px;
     color: var(--lv-text-light);
-    font-size: 11px;
+    font-size: 8px;
     font-weight: 700;
     letter-spacing: 0.12em;
 }
@@ -467,7 +466,7 @@ button {
 
 .trust-item span {
     color: var(--lv-text-light);
-    font-size: 11px;
+    font-size: 10px;
 }
 
 
@@ -563,12 +562,12 @@ button {
 
 .category-content > span {
     color: var(--lv-text-light);
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 700;
     letter-spacing: 0.1em;
 }
 
-.category-content :is(h2, h3) {
+.category-content h3 {
     margin: 5px 0 3px;
     font-family: var(--lv-font-display);
     font-size: 25px;
@@ -628,7 +627,7 @@ button {
     padding: 6px 9px;
     background: var(--lv-text);
     color: #fff;
-    font-size: 11px;
+    font-size: 8px;
     font-weight: 700;
     letter-spacing: 0.1em;
 }
@@ -675,7 +674,7 @@ button {
     min-height: 45px;
     background: #fff;
     color: var(--lv-text);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -696,12 +695,12 @@ button {
 .product-category {
     margin-bottom: 4px;
     color: var(--lv-accent);
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 700;
     letter-spacing: 0.12em;
 }
 
-.product-info :is(h2, h3) {
+.product-info h3 {
     margin-bottom: 9px;
     font-family: var(--lv-font-display);
     font-size: 19px;
@@ -724,12 +723,12 @@ button {
     align-items: center;
     gap: 4px;
     color: var(--lv-text-soft);
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .product-rating i {
     color: #b18b4d;
-    font-size: 11px;
+    font-size: 9px;
 }
 
 
@@ -851,7 +850,7 @@ button {
     background: transparent;
     color: var(--lv-text);
     padding: 0 5px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -863,7 +862,7 @@ button {
 
 .newsletter-box small {
     color: var(--lv-text-light);
-    font-size: 11px;
+    font-size: 9px;
 }
 
 
@@ -914,9 +913,9 @@ button {
     color: #fff;
 }
 
-.site-footer h2 {
+.site-footer h4 {
     margin-bottom: 20px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -956,7 +955,7 @@ button {
 .footer-bottom a {
     margin: 0;
     color: #77716c;
-    font-size: 11px;
+    font-size: 9px;
 }
 
 .footer-bottom div {
@@ -1071,7 +1070,7 @@ button {
 @media (max-width: 767px) {
 
     .announcement-bar p {
-        font-size: 11px;
+        font-size: 8px;
         line-height: 1.5;
     }
 
@@ -1161,11 +1160,11 @@ button {
     }
 
     .trust-item strong {
-        font-size: 11px;
+        font-size: 9px;
     }
 
     .trust-item span {
-        font-size: 11px;
+        font-size: 8px;
     }
 
     .footer-bottom {
@@ -1358,7 +1357,7 @@ button {
     padding: 8px 16px;
     background: var(--lv-text);
     color: #fff;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -1405,11 +1404,11 @@ button {
     text-decoration: line-through;
 }
 
-.product-info :is(h2, h3) a {
+.product-info h3 a {
     transition: var(--lv-transition);
 }
 
-.product-info :is(h2, h3) a:hover {
+.product-info h3 a:hover {
     color: var(--lv-accent);
 }
 
@@ -1430,7 +1429,7 @@ button {
     display: inline-block;
 }
 
-.shop-empty-state :is(h2, h3) {
+.shop-empty-state h3 {
     font-family: var(--lv-font-display);
     font-size: 22px;
     font-weight: 500;
@@ -1547,19 +1546,19 @@ button {
 .cart-row-category {
     margin-bottom: 4px;
     color: var(--lv-accent);
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 700;
     letter-spacing: 0.1em;
 }
 
-.cart-row-info :is(h2, h3) {
+.cart-row-info h3 {
     margin-bottom: 6px;
     font-family: var(--lv-font-display);
     font-size: 17px;
     font-weight: 500;
 }
 
-.cart-row-info :is(h2, h3) a:hover {
+.cart-row-info h3 a:hover {
     color: var(--lv-accent);
 }
 
@@ -1637,8 +1636,8 @@ button {
     display: inline-block;
 }
 
-.cart-empty-state :is(h2, h3),
-.wishlist-empty-state :is(h2, h3) {
+.cart-empty-state h3,
+.wishlist-empty-state h3 {
     font-family: var(--lv-font-display);
     font-size: 22px;
     font-weight: 500;
@@ -1662,7 +1661,7 @@ button {
     padding: 30px;
 }
 
-.cart-summary :is(h2, h3) {
+.cart-summary h3 {
     margin-bottom: 20px;
     font-family: var(--lv-font-display);
     font-size: 20px;
@@ -1970,7 +1969,7 @@ button {
     gap: 8px;
     background: var(--lv-text);
     color: #fff;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -2018,7 +2017,7 @@ button {
     border-bottom: 1px solid var(--lv-border);
 }
 
-.checkout-block :is(h2, h3) {
+.checkout-block h3 {
     margin-bottom: 20px;
     font-family: var(--lv-font-display);
     font-size: 20px;
@@ -2117,7 +2116,7 @@ button {
     padding: 30px;
 }
 
-.checkout-summary :is(h2, h3) {
+.checkout-summary h3 {
     margin-bottom: 20px;
     font-family: var(--lv-font-display);
     font-size: 20px;
@@ -2166,7 +2165,7 @@ button {
     background: var(--lv-text);
     color: #fff;
     border-radius: 50%;
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 700;
 }
 
@@ -2175,7 +2174,7 @@ button {
     min-width: 0;
 }
 
-.checkout-row-info :is(h3, h4) {
+.checkout-row-info h4 {
     font-size: 12px;
     font-weight: 600;
     margin-bottom: 2px;
@@ -2185,7 +2184,7 @@ button {
 }
 
 .checkout-row-info p {
-    font-size: 11px;
+    font-size: 9px;
     color: var(--lv-text-light);
     letter-spacing: 0.05em;
 }
@@ -2208,7 +2207,7 @@ button {
     display: inline-block;
 }
 
-.checkout-empty-state :is(h2, h3) {
+.checkout-empty-state h3 {
     font-family: var(--lv-font-display);
     font-size: 22px;
     margin-bottom: 8px;
@@ -2340,7 +2339,7 @@ button {
     display: inline-block;
 }
 
-.value-card :is(h2, h3) {
+.value-card h3 {
     margin-bottom: 10px;
     font-family: var(--lv-font-display);
     font-size: 19px;
@@ -2520,11 +2519,11 @@ textarea:focus-visible {
 
 .product-category,
 .cart-row-category {
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .product-badge {
-    font-size: 11px;
+    font-size: 9px;
 }
 
 .trust-item strong {
@@ -2536,7 +2535,7 @@ textarea:focus-visible {
 }
 
 .hero-floating-card small {
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .footer-description {
@@ -2558,7 +2557,7 @@ textarea:focus-visible {
 }
 
 .checkout-row-info p {
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .search-input-wrapper input::placeholder {
@@ -2576,7 +2575,7 @@ textarea:focus-visible {
     }
 
     .trust-item span {
-        font-size: 11px;
+        font-size: 10px;
     }
 
 }
@@ -2830,7 +2829,7 @@ main:focus {
     padding: 3px 8px;
     border: 1px solid var(--lv-border);
     background: var(--lv-bg-soft);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -2844,225 +2843,4 @@ main:focus {
     margin: 12px 0 0;
     color: var(--lv-text-soft);
     font-size: 12px;
-}
-
-/* =========================================================
-   HERO DEPTH
-   Subtle 3D: a tilted photo, an offset frame behind it and a
-   floating card. CSS only; transform/opacity only, so it never
-   delays the main content. Flat on small screens and when the
-   visitor prefers reduced motion.
-========================================================= */
-
-.hero-image-wrapper {
-    perspective: 1400px;
-}
-
-.hero-image-wrapper::before {
-    content: "";
-    position: absolute;
-    inset: 16px -8px -16px 16px;
-    z-index: 0;
-    border: 1px solid var(--lv-accent);
-    opacity: 0.45;
-    pointer-events: none;
-}
-
-.hero-image {
-    position: relative;
-    z-index: 1;
-}
-
-.hero-floating-card {
-    z-index: 2;
-    animation: lv-float 7s ease-in-out infinite;
-}
-
-@keyframes lv-float {
-    0%, 100% { transform: translate3d(0, 0, 40px); }
-    50%      { transform: translate3d(0, -8px, 40px); }
-}
-
-@media (min-width: 992px) {
-    .hero-image-wrapper::before {
-        inset: 28px -22px -22px 28px;
-    }
-
-    .hero-image {
-        transform: rotateY(-2.5deg) rotateX(1deg);
-        box-shadow: 30px 40px 70px -30px rgba(39, 36, 33, 0.28);
-        transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
-    }
-}
-
-@media (min-width: 992px) and (hover: hover) {
-    .hero-image-wrapper:hover .hero-image {
-        transform: rotateY(0) rotateX(0);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .hero-floating-card {
-        animation: none;
-        transform: none;
-    }
-
-    .hero-image {
-        transform: none;
-        transition: none;
-    }
-}
-
-
-/* =========================================================
-   LOADING PLACEHOLDERS, NOTICES AND FORM MESSAGES
-========================================================= */
-
-[hidden] {
-    display: none !important;
-}
-
-.u-hidden {
-    display: none;
-}
-
-#confirmMissing {
-    padding-top: 20px;
-}
-
-/* grey placeholder cards shown until products.js draws the real ones;
-   they reuse .product-image so the height matches the real card */
-.skeleton-card {
-    animation: lv-skeleton-pulse 1.6s ease-in-out infinite;
-}
-
-.skeleton-image {
-    background: var(--lv-bg-soft);
-}
-
-.skeleton-line,
-.skeleton-button {
-    background: var(--lv-bg-soft);
-}
-
-.skeleton-line {
-    width: 80%;
-    height: 14px;
-    margin-top: 16px;
-}
-
-.skeleton-line-short {
-    width: 35%;
-}
-
-.skeleton-button {
-    height: 46px;
-    margin-top: 18px;
-}
-
-@keyframes lv-skeleton-pulse {
-    50% { opacity: 0.55; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .skeleton-card {
-        animation: none;
-    }
-}
-
-.demo-notice {
-    margin: 0 0 22px;
-    padding: 12px 16px;
-    border-left: 3px solid var(--lv-accent);
-    background: var(--lv-bg-soft);
-    color: var(--lv-text);
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.demo-notice-inline {
-    display: block;
-    margin-top: 6px;
-}
-
-.form-status {
-    margin: 12px 0 0;
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.form-status:empty {
-    display: none;
-}
-
-.form-status-error {
-    color: #9b2c2c;
-}
-
-.form-status-success {
-    color: #2f6b3f;
-}
-
-.form-status-info {
-    color: var(--lv-text);
-}
-
-
-/* =========================================================
-   TOUCH TARGETS
-   Keeps small links and buttons at least 24px tall (WCAG 2.2 AA 2.5.8)
-   without changing how the page looks.
-========================================================= */
-
-.site-footer li a,
-.footer-bottom a,
-.text-link,
-.cart-row-remove {
-    display: inline-block;
-    min-height: 24px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-}
-
-.footer-bottom a {
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
-.checkout-form input[type="checkbox"],
-.checkout-form input[type="radio"] {
-    width: 18px;
-    height: 18px;
-}
-
-.product-info :is(h2, h3) a,
-.cart-row-info :is(h2, h3) a,
-.breadcrumb-nav a {
-    display: inline-block;
-    min-height: 24px;
-    line-height: 1.4;
-}
-
-.search-close {
-    min-width: 44px;
-    min-height: 44px;
-}
-
-.cart-row-qty {
-    width: fit-content;
-}
-
-.cart-row-qty .qty-btn {
-    flex: 0 0 32px;
-}
-
-.cart-row-qty .qty-input {
-    flex: 0 0 44px;
-    width: 44px;
-    min-width: 0;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-    accent-color: var(--lv-text);
 }

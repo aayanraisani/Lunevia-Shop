@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dashboard | Lunévia Admin</title>
+
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 + Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Store design (colors, forms) + order styles + admin styles -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body admin-checking" data-admin-page="dashboard">
+
+    <!-- The sidebar and top bar are added by js/admin-layout.js -->
+
+    <main id="adminContent" class="admin-content">
+
+        <div class="admin-page-head">
+            <h1>Dashboard</h1>
+            <p>A quick look at how the store is doing.</p>
+        </div>
+
+        <div class="stat-grid" id="statGrid"></div>
+
+        <div class="row g-4">
+            <div class="col-12 col-xl-7">
+                <div class="admin-card">
+                    <div class="admin-card-head"><h2>Sales, last 7 days</h2></div>
+                    <div class="mini-chart" id="salesChart" role="img" aria-label="Sales for the last 7 days"></div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-5">
+                <div class="admin-card">
+                    <div class="admin-card-head"><h2>Low stock</h2><a href="products.html">All products</a></div>
+                    <div id="lowStockList"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-card mt-4">
+            <div class="admin-card-head"><h2>Latest orders</h2><a href="orders.html">View all</a></div>
+            <div class="admin-table-wrap" id="latestOrders"></div>
+        </div>
+
+    </main>
+
+    <!-- 1. Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- 2. Shared store scripts (keep this order) -->
+    <script src="../js/products.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/store.js"></script>
+
+    <!-- 3. Admin scripts (keep this order) -->
+    <script src="js/admin-data.js"></script>
+    <script src="js/admin-layout.js"></script>
+    <script src="js/admin-dashboard.js"></script>
+
+</body>
+</html>

@@ -74,7 +74,7 @@
             offers: {
                 "@type": "Offer",
                 url: window.location.href.split("#")[0],
-                priceCurrency: LUNEVIA_CONFIG.currencyCode,
+                priceCurrency: "USD",
                 price: product.price.toFixed(2),
                 availability: product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
                 itemCondition: "https://schema.org/NewCondition"
@@ -103,25 +103,9 @@
     function renderGallery(product) {
         const mainImage = document.getElementById("productMainImage");
 
-        // the big photo: the browser picks a file size that fits the screen
-        function showMainImage(url) {
-            if (!mainImage) return;
-
-            const srcset = buildImageSrcset(url, [600, 900, 1200]);
-            mainImage.src = resizeImageUrl(url, 900);
-
-            if (srcset) {
-                mainImage.srcset = srcset;
-                mainImage.sizes = "(min-width: 992px) 50vw, 100vw";
-            } else {
-                mainImage.removeAttribute("srcset");
-                mainImage.removeAttribute("sizes");
-            }
-        }
-
         if (mainImage) {
+            mainImage.src = product.image;
             mainImage.alt = product.name;
-            showMainImage(product.image);
         }
 
         const thumbnailContainer = document.getElementById("productThumbnails");
@@ -138,7 +122,7 @@
         thumbnailContainer.innerHTML = images
             .map((image, index) => `
                 <button type="button" class="product-thumb ${index === 0 ? "active" : ""}" data-thumb-src="${escapeHtml(image)}" aria-label="Show picture ${index + 1}">
-                    <img src="${escapeHtml(resizeImageUrl(image, 200))}" width="100" height="100" alt="${escapeHtml(product.name)} view ${index + 1}" loading="lazy">
+                    <img src="${escapeHtml(image)}" alt="${escapeHtml(product.name)} view ${index + 1}">
                 </button>
             `)
             .join("");
@@ -149,7 +133,7 @@
             thumb.addEventListener("click", () => {
                 thumbs.forEach((item) => item.classList.remove("active"));
                 thumb.classList.add("active");
-                showMainImage(thumb.dataset.thumbSrc);
+                if (mainImage) mainImage.src = thumb.dataset.thumbSrc;
             });
         });
     }

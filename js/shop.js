@@ -168,7 +168,7 @@
 
         if (shopEmptyState) shopEmptyState.style.display = "none";
 
-        shopGrid.innerHTML = result.map((product) => buildProductCard(product, { headingTag: "h2" })).join("");
+        shopGrid.innerHTML = result.map((product) => buildProductCard(product)).join("");
     }
 
 

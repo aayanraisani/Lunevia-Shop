@@ -12,11 +12,6 @@
     <meta property="og:title" content="Track Your Order | Lunévia">
     <meta property="og:description" content="Check the status of your Lunévia order.">
 
-    <meta property="og:image" content="https://lunevia-shop.vercel.app/assets/og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-
     <title>Track Your Order | Lunévia</title>
 
     <!-- Favicon -->
@@ -25,8 +20,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://images.unsplash.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400..700&family=Playfair+Display:ital,wght@0,400..600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -37,13 +31,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/pages.css">
-
-    <!-- Scripts: deferred, keep this order -->
-    <script src="js/config.js" defer></script>
-    <script src="js/products.js" defer></script>
-    <script src="js/main.js" defer></script>
-    <script src="js/store.js" defer></script>
-    <script src="js/tracking.js" defer></script>
 </head>
 <body>
 
@@ -59,7 +46,7 @@
         <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
             <div class="container">
                 <a class="navbar-brand" href="index.html">Lunévia</a>
-                <button class="navbar-toggler" type="button" data-nav-toggle aria-controls="mainNavbar" aria-expanded="false" aria-label="Open navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="bi bi-list"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="mainNavbar">
@@ -87,7 +74,7 @@
             <button class="search-close" id="searchClose" type="button" aria-label="Close search"><i class="bi bi-x-lg"></i></button>
             <p class="search-label">SEARCH LUNÉVIA</p>
             <div class="search-input-wrapper">
-                <input type="search" id="searchInput" placeholder="Search skincare, jewelry, beauty..." aria-label="Search products" autocomplete="off" enterkeyhint="search">
+                <input type="text" id="searchInput" placeholder="Search skincare, jewelry, beauty..." aria-label="Search products" autocomplete="off" enterkeyhint="search">
                 <i class="bi bi-search"></i>
             </div>
         </div>
@@ -106,7 +93,6 @@
             <div class="container">
 
                 <div class="tracking-card">
-                    <p class="demo-notice"><strong>Demo:</strong> orders are stored in the browser where they were placed, so only orders from this browser can be found.</p>
                     <form id="trackingForm" novalidate>
                         <div class="form-alert" id="trackingMessage" role="alert"></div>
 
@@ -145,7 +131,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
-                    <h2>Shop</h2>
+                    <h4>Shop</h4>
                     <ul>
                         <li><a href="shop.html?category=skincare">Skincare</a></li>
                         <li><a href="shop.html?category=beauty">Beauty</a></li>
@@ -155,7 +141,7 @@
                     </ul>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
-                    <h2>Information</h2>
+                    <h4>Information</h4>
                     <ul>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -165,7 +151,7 @@
                     </ul>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
-                    <h2>Account</h2>
+                    <h4>Account</h4>
                     <ul>
                         <li><a href="account.html">My Account</a></li>
                         <li><a href="wishlist.html">Wishlist</a></li>
@@ -181,6 +167,11 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/tracking.js"></script>
 
 </body>
 </html>

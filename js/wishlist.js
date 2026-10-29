@@ -26,7 +26,7 @@
         if (wishlistEmptyState) wishlistEmptyState.style.display = "none";
 
         wishlistGrid.innerHTML = wishlistProducts
-            .map((product) => buildProductCard(product, { headingTag: "h2" }))
+            .map((product) => buildProductCard(product))
             .join("");
     }
 

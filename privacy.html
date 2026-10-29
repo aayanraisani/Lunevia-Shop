@@ -11,13 +11,6 @@
     <meta property="og:title" content="Privacy Policy | Lunévia">
     <meta property="og:description" content="How Lunévia collects, uses and protects your information.">
 
-    <link rel="canonical" href="https://lunevia-shop.vercel.app/privacy.html">
-    <meta property="og:url" content="https://lunevia-shop.vercel.app/privacy.html">
-    <meta property="og:image" content="https://lunevia-shop.vercel.app/assets/og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-
     <title>Privacy Policy | Lunévia</title>
 
     <!-- Favicon -->
@@ -26,7 +19,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400..700&family=Playfair+Display:ital,wght@0,400..600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -37,11 +30,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/pages.css">
-
-    <!-- Scripts: deferred, keep this order -->
-    <script src="js/config.js" defer></script>
-    <script src="js/products.js" defer></script>
-    <script src="js/main.js" defer></script>
 </head>
 <body>
 
@@ -57,7 +45,7 @@
         <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
             <div class="container">
                 <a class="navbar-brand" href="index.html">Lunévia</a>
-                <button class="navbar-toggler" type="button" data-nav-toggle aria-controls="mainNavbar" aria-expanded="false" aria-label="Open navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="bi bi-list"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="mainNavbar">
@@ -85,7 +73,7 @@
             <button class="search-close" id="searchClose" type="button" aria-label="Close search"><i class="bi bi-x-lg"></i></button>
             <p class="search-label">SEARCH LUNÉVIA</p>
             <div class="search-input-wrapper">
-                <input type="search" id="searchInput" placeholder="Search skincare, jewelry, beauty..." aria-label="Search products" autocomplete="off" enterkeyhint="search">
+                <input type="text" id="searchInput" placeholder="Search skincare, jewelry, beauty..." aria-label="Search products" autocomplete="off" enterkeyhint="search">
                 <i class="bi bi-search"></i>
             </div>
         </div>
@@ -106,38 +94,36 @@
 
                     <p class="legal-updated">Last updated: October 2026</p>
 
-                    <p>This policy explains what information Lunévia collects, why we collect it and the choices you have. By using our website you agree to this policy.</p>
-
-                    <p class="demo-notice"><strong>Template note for the site owner:</strong> this page is sample text, not legal advice. Replace the contact details, delivery areas, prices and policies with your own, and have it reviewed for the laws that apply to your business. In demo mode this template sends no form data anywhere.</p>
+                    <p>This website is a front-end demonstration. Do not enter real personal, account, delivery, or payment information. The demonstration stores sample form entries, account data, cart data, and orders in the current browser and does not send them to a store backend.</p>
 
                     <h2>Information we collect</h2>
                     <ul>
-                        <li><strong>Order details:</strong> your name, email, phone number, delivery address and the items you order.</li>
-                        <li><strong>Account details:</strong> your name, email, phone and saved address if you create an account. Passwords are stored in a protected form.</li>
+                        <li><strong>Demo order details:</strong> the name, email, phone number, delivery address and items you enter during checkout, saved locally in this browser.</li>
+                        <li><strong>Demo account details:</strong> the name, email, phone and address you enter when creating a sample account. Password hashes are stored in this browser; this is not server-side account security.</li>
                         <li><strong>Messages:</strong> what you send us through the contact form.</li>
                         <li><strong>Newsletter:</strong> your email address if you subscribe.</li>
                         <li><strong>Browser storage:</strong> your shopping bag, wishlist and sign-in status are kept in your browser so they are still there when you come back.</li>
                     </ul>
 
-                    <h2>How we use it</h2>
+                    <h2>How the demo uses it</h2>
                     <ul>
-                        <li>To process, deliver and track your orders.</li>
-                        <li>To answer your questions and give support.</li>
-                        <li>To send our newsletter, only if you subscribed. You can unsubscribe at any time.</li>
-                        <li>To keep the website secure and working well.</li>
+                        <li>To demonstrate cart, wishlist, account, contact, newsletter, and checkout interactions.</li>
+                        <li>To show locally saved sample orders and submissions in the demo admin panel when it is opened in the same browser profile.</li>
+                        <li>No real order fulfilment, support response, or newsletter email is triggered by this front-end demo.</li>
                     </ul>
 
                     <h2>Sharing your information</h2>
-                    <p>We do not sell your personal information. The site owner may share order information with delivery partners when needed to fulfil an order, and with payment providers if online payment is offered. Do not submit payment-card details through the forms on this site.</p>
+                    <p>This Vercel-hosted front-end demo does not have a connected backend or form-processing provider. Contact messages, newsletter emails, sample account details, and sample orders are stored in local browser storage only; they are not transmitted to the site owner or a database by this code. The same browser profile can expose this data to other scripts running on this site, and clearing browser storage may remove it.</p>
+                    <p>Do not enter real customer information or payment-card details. Before using this project as a real store, connect a properly secured backend or form provider and replace this demo policy with one that accurately describes the deployed services.</p>
 
                     <h2>Cookies and browser storage</h2>
                     <p>We use your browser's storage for essential features: your bag, wishlist and account sign-in. You can clear this at any time in your browser settings, but your bag and wishlist will be emptied and you will be signed out.</p>
 
                     <h2>Your choices</h2>
-                    <p>You can ask us to show, correct or delete the personal information we hold about you. Email <a href="mailto:hello@lunevia.com">hello@lunevia.com</a> and we will respond as soon as we can. To stop newsletter emails, use the unsubscribe option in the email or contact us.</p>
+                    <p>You can remove this demo data by clearing this site's local storage in your browser settings. The contact details shown elsewhere on the site are placeholders and must be verified before any real launch.</p>
 
                     <h2>How long we keep information</h2>
-                    <p>We keep order information for as long as we need it to run our business and meet legal and tax requirements. We keep newsletter emails until you unsubscribe.</p>
+                    <p>Demo records remain in this browser until removed by the demo controls or cleared from browser storage. This code does not send newsletter emails or maintain a central order database.</p>
 
                     <h2>Security</h2>
                     <p>We take reasonable steps to protect your information. No website can be completely secure, so please choose a strong password and keep it private.</p>
@@ -171,7 +157,7 @@
                     </div>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
-                    <h2>Shop</h2>
+                    <h4>Shop</h4>
                     <ul>
                         <li><a href="shop.html?category=skincare">Skincare</a></li>
                         <li><a href="shop.html?category=beauty">Beauty</a></li>
@@ -181,7 +167,7 @@
                     </ul>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
-                    <h2>Information</h2>
+                    <h4>Information</h4>
                     <ul>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -191,7 +177,7 @@
                     </ul>
                 </div>
                 <div class="col-6 col-md-4 col-lg-2">
-                    <h2>Account</h2>
+                    <h4>Account</h4>
                     <ul>
                         <li><a href="account.html">My Account</a></li>
                         <li><a href="wishlist.html">Wishlist</a></li>
@@ -207,6 +193,9 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 </html>
