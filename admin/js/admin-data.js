@@ -131,7 +131,9 @@ function saveAdminProduct(input) {
     let saved;
 
     if (existing) {
-        saved = Object.assign({}, existing, checked.product, { images: [checked.product.image] });
+        // keep the extra gallery photos unless the main photo was replaced
+        const images = existing.image === checked.product.image && existing.images.length ? existing.images : [checked.product.image];
+        saved = Object.assign({}, existing, checked.product, { images: images });
         list[list.indexOf(existing)] = saved;
     } else {
         const newId = list.reduce((max, product) => Math.max(max, product.id), 0) + 1;
@@ -139,20 +141,21 @@ function saveAdminProduct(input) {
         list.push(saved);
     }
 
-    if (!writeList(ADMIN_KEYS.products, list)) return { ok: false, error: PRODUCT_SAVE_FAILED };
+    if (!saveCatalog(list)) return { ok: false, error: PRODUCT_SAVE_FAILED };
 
     return { ok: true, product: saved };
 }
 
 function deleteAdminProduct(id) {
     const list = getAdminProducts().filter((product) => product.id !== Number(id));
-    return writeList(ADMIN_KEYS.products, list) ? { ok: true } : { ok: false, error: PRODUCT_SAVE_FAILED };
+    return saveCatalog(list) ? { ok: true } : { ok: false, error: PRODUCT_SAVE_FAILED };
 }
 
 // back to the built-in sample products
 function restoreSampleProducts() {
     try {
         localStorage.removeItem(ADMIN_KEYS.products);
+        localStorage.removeItem(SEEN_SEED_STORAGE_KEY);
         return { ok: true };
     } catch (error) {
         return { ok: false, error: "Could not restore the sample products." };
@@ -172,12 +175,18 @@ function updateAdminOrderStatus(orderNumber, status) {
 
     if (!order) return { ok: false, error: "Order not found." };
 
+    const wasCancelled = order.status === "cancelled";
+    const isCancelled = status === "cancelled";
+
     order.status = status;
     order.updatedAt = new Date().toISOString();
 
-    return writeList(ADMIN_KEYS.orders, orders)
-        ? { ok: true, order: order }
-        : { ok: false, error: STORAGE_BLOCKED_MESSAGE };
+    if (!writeList(ADMIN_KEYS.orders, orders)) return { ok: false, error: STORAGE_BLOCKED_MESSAGE };
+
+    // a cancelled order puts its items back on the shelf (and un-cancelling takes them out again)
+    if (wasCancelled !== isCancelled) adjustStock(order.items, isCancelled ? 1 : -1);
+
+    return { ok: true, order: order };
 }
 
 

@@ -15,6 +15,9 @@ const SHOW_RATINGS = false;
 // Smaller orders pay FLAT_SHIPPING_FEE.
 const SETTINGS_STORAGE_KEY = "luneviaSettings";
 const PRODUCTS_STORAGE_KEY = "luneviaProducts";
+const SEEN_SEED_STORAGE_KEY = "luneviaSeedSeen";
+// catalogs saved before seed tracking existed already contained the first 12 sample products
+const LEGACY_SEED_LIMIT = 12;
 const PRODUCT_CATEGORIES = ["skincare", "beauty", "jewelry", "accessories"];
 
 function loadStoreSettings() {
@@ -51,6 +54,18 @@ const PLACEHOLDER_IMAGE =
 
 /* ---------- sample products (the admin can add, change and delete products) ---------- */
 
+// builds a sample product with two local illustrations (replace them with your own photos in the admin)
+function seedProduct(id, name, category, price, oldPrice, badge, slug, shortDescription, description, stock, featured) {
+    const main = `assets/products/${slug}-1.svg`;
+
+    return {
+        id: id, name: name, category: category, price: price, oldPrice: oldPrice,
+        rating: 0, reviewCount: 0, badge: badge,
+        image: main, images: [main, `assets/products/${slug}-2.svg`],
+        description: description, shortDescription: shortDescription, stock: stock, featured: featured
+    };
+}
+
 const SEED_PRODUCTS = [
 
     { id: 1, name: "Glow Renewal Serum", category: "skincare", price: 38.00, oldPrice: null, rating: 4.9, reviewCount: 214, badge: "Bestseller", image: "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=1000&q=85"], description: "A lightweight, fast-absorbing serum formulated with bakuchiol and niacinamide to visibly renew skin's natural radiance overnight.", shortDescription: "Bakuchiol + niacinamide overnight glow serum.", stock: 42, featured: true },
@@ -76,7 +91,38 @@ const SEED_PRODUCTS = [
 
     { id: 11, name: "Silk Hair Scarf", category: "accessories", price: 22.00, oldPrice: null, rating: 4.6, reviewCount: 53, badge: "New", image: "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=1000&q=85"], description: "A soft, lightweight silk-blend scarf that doubles as a hair accessory, neck scarf, or bag charm.", shortDescription: "Multi-way silk-blend scarf.", stock: 48, featured: false },
 
-    { id: 12, name: "Structured Mini Tote", category: "accessories", price: 58.00, oldPrice: 68.00, rating: 4.8, reviewCount: 97, badge: "Sale", image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=1000&q=85"], description: "A structured vegan-leather mini tote with an interior pocket, sized perfectly for daily essentials.", shortDescription: "Structured vegan-leather mini tote.", stock: 21, featured: false }
+    { id: 12, name: "Structured Mini Tote", category: "accessories", price: 58.00, oldPrice: 68.00, rating: 4.8, reviewCount: 97, badge: "Sale", image: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=800&q=85", images: ["https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=1000&q=85"], description: "A structured vegan-leather mini tote with an interior pocket, sized perfectly for daily essentials.", shortDescription: "Structured vegan-leather mini tote.", stock: 21, featured: false },
+
+
+    /* ---------- new collection (ids 13+) — local illustrations in assets/products, swap in your own photos from the admin ---------- */
+
+    seedProduct(13, "Vitamin C Brightening Serum", "skincare", 36, null, "New", "vitamin-c-serum", "Stabilised vitamin C for a brighter-looking tone.", "A silky 30 ml serum with 10% stabilised vitamin C and ferulic acid. It layers well under moisturiser and sunscreen and helps skin look brighter and more even with daily use.", 44, false),
+    seedProduct(14, "Ceramide Barrier Cream", "skincare", 34, 40, "Sale", "ceramide-cream", "Rich 50 ml cream that cushions and comforts.", "A rich but non-greasy 50 ml moisturiser with ceramides, squalane and shea butter to cushion the skin barrier. Suitable for dry and sensitive-feeling skin, morning or night.", 58, false),
+    seedProduct(15, "Gentle Gel Cleanser", "skincare", 22, null, null, "gel-cleanser", "Soft-foaming daily cleanser, 150 ml.", "A soft-foaming 150 ml gel cleanser with glycerin and chamomile extract that lifts away makeup and daily build-up without leaving skin tight. Fragrance-free.", 72, false),
+    seedProduct(16, "Hyaluronic Hydration Toner", "skincare", 26, null, null, "hydration-toner", "Alcohol-free 120 ml toner for a plump, dewy base.", "An alcohol-free 120 ml toner with two weights of hyaluronic acid and panthenol. Press it in with clean hands after cleansing to prep skin for serums and creams.", 61, false),
+    seedProduct(17, "Mineral Sunscreen SPF 50", "skincare", 28, null, "Bestseller", "mineral-spf", "Lightweight zinc oxide SPF 50, 50 ml.", "A lightweight 50 ml broad-spectrum SPF 50 made with zinc oxide. It blends with a soft, natural finish and sits comfortably under makeup. Reapply every two hours in strong sun.", 80, true),
+    seedProduct(18, "Rosehip Facial Oil", "skincare", 31, null, null, "rosehip-oil", "Cold-pressed rosehip oil, 30 ml.", "A 30 ml cold-pressed rosehip seed oil in a UV-protective amber bottle. Warm two drops between your palms and press over moisturiser as a final evening step.", 39, false),
+
+    seedProduct(19, "Velvet Blush Duo", "beauty", 24, null, "New", "blush-duo", "Two buildable blush shades in one compact.", "A pressed powder blush duo in a soft rose and warm peach with a velvety, blendable finish. Wear one shade alone or swirl both for a natural flush. Mirror included.", 52, false),
+    seedProduct(20, "Satin Lip Oil", "beauty", 18, null, null, "lip-oil", "Non-sticky shine with a hint of tint, 8 ml.", "A glossy, non-sticky 8 ml lip oil with jojoba and vitamin E and a sheer rosy tint. Wear it alone or over your favourite matte lip colour.", 90, false),
+    seedProduct(21, "Lash Lift Mascara", "beauty", 21, null, null, "lash-mascara", "Lengthening, lifting black mascara.", "A flexible-bristle black mascara that separates, lengthens and lifts lashes without clumping. Smudge-resistant and easy to remove with warm water and a cleanser.", 66, false),
+    seedProduct(22, "Rose Quartz Gua Sha Set", "beauty", 39, 46, "Sale", "gua-sha-set", "Gua sha and facial roller in a travel pouch.", "A hand-finished rose quartz gua sha and facial roller set with a soft pouch. Use with a few drops of facial oil to relax the face and neck as part of your evening ritual.", 34, false),
+    seedProduct(23, "Eau de Lunévia Parfum", "beauty", 64, null, "New", "parfum", "Soft florals, warm amber and musk, 50 ml.", "A 50 ml eau de parfum with a soft floral heart of jasmine and peony settling into warm amber and white musk. Refined, quiet and made to be worn every day.", 27, true),
+    seedProduct(24, "Golden Hour Eyeshadow Palette", "beauty", 42, null, null, "eyeshadow-palette", "Nine warm neutrals in matte and shimmer.", "Nine finely milled eyeshadows in warm neutral matte and shimmer finishes, from soft champagne to deep cocoa. A single palette for day looks and evening glam.", 31, false),
+
+    seedProduct(25, "Celeste Moon Necklace", "jewelry", 44, null, "New", "moon-necklace", "Crescent moon pendant on a fine gold chain.", "A dainty crescent moon pendant on an adjustable 16–18 inch chain, finished in 18k gold plating over stainless steel. Light enough to wear every day and to layer.", 29, false),
+    seedProduct(26, "Pavé Stacking Ring Set", "jewelry", 38, null, null, "stacking-rings", "Three slim rings with sparkling cubic zirconia.", "A set of three slim stacking rings with hand-set cubic zirconia, in gold-plated brass. Wear them together or split them across fingers.", 36, false),
+    seedProduct(27, "Gold Huggie Earrings", "jewelry", 27, null, "Bestseller", "huggie-earrings", "Small hoops that sit close to the ear.", "A pair of 12 mm huggie hoops with a secure hinged closure, in tarnish-resistant gold-plated stainless steel. Comfortable enough to sleep in.", 62, false),
+    seedProduct(28, "Herringbone Chain Bracelet", "jewelry", 33, 39, "Sale", "chain-bracelet", "Flat, flexible herringbone chain.", "A flat herringbone chain bracelet with a lobster clasp and a 2 inch extender so it fits most wrists. Water-resistant stainless steel with a gold finish.", 41, false),
+    seedProduct(29, "Baroque Pearl Choker", "jewelry", 48, null, null, "pearl-choker", "Freshwater baroque pearls on a gold chain.", "A choker of irregular freshwater baroque pearls on a gold-plated chain with an adjustable length. Every pearl is a little different, so each piece is unique.", 22, false),
+    seedProduct(30, "Orbit Ear Cuff Set", "jewelry", 26, null, "New", "ear-cuffs", "Three no-piercing cuffs in mixed shapes.", "A trio of lightweight ear cuffs that clip on without a piercing. Mix the three shapes along the ear for a curated look in minutes.", 45, false),
+
+    seedProduct(31, "Satin Scrunchie Set", "accessories", 14, null, null, "scrunchies", "Set of three in soft neutrals.", "Three gentle satin scrunchies in blush, cocoa and ivory. Kind to hair and easy to wear on the wrist between ponytails.", 100, false),
+    seedProduct(32, "Tortoiseshell Claw Clip", "accessories", 12, null, "New", "claw-clip", "Large matte claw clip with a strong grip.", "A large matte tortoiseshell-pattern claw clip with a strong, springy grip that holds thick hair in a twist without tugging.", 120, false),
+    seedProduct(33, "Canvas Market Tote", "accessories", 36, null, null, "canvas-tote", "Roomy cotton canvas tote with an inner pocket.", "A roomy heavyweight cotton canvas tote with reinforced handles and an inside zip pocket. Easy to carry from market to office.", 48, false),
+    seedProduct(34, "Cat-Eye Sunglasses", "accessories", 29, null, null, "sunglasses", "Retro cat-eye frames with UV400 lenses.", "Retro cat-eye sunglasses with lightweight frames and UV400 lenses. Comes with a soft protective pouch.", 55, false),
+    seedProduct(35, "Quilted Cosmetic Pouch", "accessories", 19, null, null, "cosmetic-pouch", "Soft quilted pouch with a gold zip.", "A soft quilted vegan-leather pouch with a smooth gold zip and a wipe-clean lining. Big enough for a full daily makeup edit.", 70, false),
+    seedProduct(36, "Vegan Leather Card Wallet", "accessories", 24, 28, "Sale", "card-wallet", "Slim wallet with four card slots and a note pocket.", "A slim vegan-leather card wallet with four card slots and a central pocket for folded notes. Slips into any bag or pocket.", 63, false)
 
 ];
 
@@ -116,14 +162,55 @@ function normalizeProduct(raw) {
     };
 }
 
-// products saved by the admin panel win. If nothing was saved yet, the sample products are used.
+function readSeenSeedIds() {
+    try {
+        const seen = JSON.parse(localStorage.getItem(SEEN_SEED_STORAGE_KEY));
+        if (Array.isArray(seen)) return seen.map(Number);
+    } catch (error) {
+        // treated as "never tracked" below
+    }
+
+    return null;
+}
+
+// saves the catalog and remembers which sample products it already knows about
+function saveCatalog(list) {
+    try {
+        localStorage.setItem(PRODUCTS_STORAGE_KEY, JSON.stringify(list));
+        localStorage.setItem(SEEN_SEED_STORAGE_KEY, JSON.stringify(SEED_PRODUCTS.map((product) => product.id)));
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
+// Products saved by the admin panel win. If nothing was saved yet, the sample products are used.
+// Sample products added to the code later are merged into a saved catalog once, so returning
+// visitors see new products too. Products the admin deleted stay deleted.
 function loadCatalog() {
     try {
         const raw = localStorage.getItem(PRODUCTS_STORAGE_KEY);
 
         if (raw !== null) {
             const saved = JSON.parse(raw);
-            if (Array.isArray(saved)) return saved.map(normalizeProduct).filter(Boolean);
+
+            if (Array.isArray(saved)) {
+                const list = saved.map(normalizeProduct).filter(Boolean);
+                const seen = readSeenSeedIds() || SEED_PRODUCTS.filter((product) => product.id <= LEGACY_SEED_LIMIT).map((product) => product.id);
+                const fresh = SEED_PRODUCTS.filter((product) => !seen.includes(product.id));
+
+                if (fresh.length) {
+                    fresh.forEach((seed) => {
+                        const next = normalizeProduct(seed);
+                        if (list.some((item) => item.id === next.id)) next.id = list.reduce((max, item) => Math.max(max, item.id), 0) + 1;
+                        list.push(next);
+                    });
+
+                    saveCatalog(list);
+                }
+
+                return list;
+            }
         }
     } catch (error) {
         // broken saved data: fall back to the sample products
@@ -174,6 +261,20 @@ function getRelatedProducts(product, limit = 4) {
 
 function getFeaturedProducts(limit = 4) {
     return products.filter((product) => product.featured).slice(0, limit);
+}
+
+function getNewArrivals(limit = 4) {
+    return products.filter((product) => String(product.badge).toLowerCase() === "new").sort((a, b) => b.id - a.id).slice(0, limit);
+}
+
+// direction -1 takes the items out of stock (order placed), +1 puts them back (order cancelled)
+function adjustStock(items, direction) {
+    (items || []).forEach((item) => {
+        const product = getProductById(item.id);
+        if (product) product.stock = Math.max(0, product.stock + direction * (Number(item.quantity) || 0));
+    });
+
+    return saveCatalog(products);
 }
 
 

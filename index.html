@@ -29,6 +29,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1000&q=78" fetchpriority="high">
 </head>
 <body>
 
@@ -36,7 +37,7 @@
 
     <div class="announcement-bar">
         <div class="container text-center">
-            <p>Complimentary shipping on orders over $75 <span>•</span> Discover the new Lunévia collection</p>
+            <p>Complimentary shipping on orders over <lv-amount data-amount="threshold">$75</lv-amount> <span>•</span> Discover the new Lunévia collection</p>
         </div>
     </div>
 
@@ -100,7 +101,7 @@
 
                     <div class="hero-image-wrapper">
                         <div class="hero-image">
-                            <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1200&q=85" alt="Lunévia skincare collection" fetchpriority="high">
+                            <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1000&q=78" alt="Lunévia skincare collection" width="1000" height="1250" fetchpriority="high">
                         </div>
                         <div class="hero-floating-card">
                             <span class="floating-card-icon"><i class="bi bi-stars"></i></span>
@@ -114,6 +115,14 @@
                 </div>
             </div>
         </section>
+
+        <!-- SCROLLING STRIP -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track">
+                <span>Skincare</span><span>Beauty</span><span>Jewelry</span><span>Accessories</span><span>Free shipping over <lv-amount data-amount="threshold">$75</lv-amount></span><span>Cash on delivery</span>
+                <span>Skincare</span><span>Beauty</span><span>Jewelry</span><span>Accessories</span><span>Free shipping over <lv-amount data-amount="threshold">$75</lv-amount></span><span>Cash on delivery</span>
+            </div>
+        </div>
 
 
         <!-- TRUST STRIP -->
@@ -244,6 +253,69 @@
         </section>
 
 
+        
+
+        <!-- NEW ARRIVALS (built by js/home.js from the catalog) -->
+        <section class="featured-section arrivals-section section-padding" id="arrivalsSection">
+            <div class="container">
+
+                <div class="section-heading-row">
+                    <div class="section-heading">
+                        <p class="eyebrow">JUST LANDED</p>
+                        <h2>New <em>arrivals.</em></h2>
+                    </div>
+                    <a href="shop.html?sort=newest" class="text-link">Shop the newest <i class="bi bi-arrow-right"></i></a>
+                </div>
+
+                <div class="row g-4 mt-2" id="arrivalsGrid"></div>
+
+            </div>
+        </section>
+
+
+        <!-- DAILY RITUAL -->
+        <section class="ritual-section section-padding">
+            <div class="container">
+
+                <div class="section-heading text-center">
+                    <p class="eyebrow">THREE SIMPLE STEPS</p>
+                    <h2>Build your <em>ritual.</em></h2>
+                </div>
+
+                <div class="row g-4 mt-3">
+                    <div class="col-12 col-md-4">
+                        <a href="shop.html?category=skincare" class="ritual-step">
+                            <span class="ritual-number">01</span>
+                            <i class="bi bi-droplet-half"></i>
+                            <h3>Cleanse &amp; Prep</h3>
+                            <p>Start with a gentle cleanser, a hydrating toner and a serum your skin will love.</p>
+                            <span class="text-link">Shop skincare <i class="bi bi-arrow-right"></i></span>
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <a href="shop.html?category=beauty" class="ritual-step">
+                            <span class="ritual-number">02</span>
+                            <i class="bi bi-brush"></i>
+                            <h3>Perfect &amp; Glow</h3>
+                            <p>A touch of colour, a little shine and a fragrance that feels like you.</p>
+                            <span class="text-link">Shop beauty <i class="bi bi-arrow-right"></i></span>
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <a href="shop.html?category=jewelry" class="ritual-step">
+                            <span class="ritual-number">03</span>
+                            <i class="bi bi-gem"></i>
+                            <h3>Finish in Gold</h3>
+                            <p>Fine pieces to layer, stack and wear every day, from the first light to the last.</p>
+                            <span class="text-link">Shop jewelry <i class="bi bi-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
         <!-- EDITORIAL BANNER -->
         <section class="editorial-section">
             <div class="container">
@@ -270,7 +342,7 @@
                     <h2>Beauty notes, <em>delivered.</em></h2>
                     <p>Sign up for new arrivals, curated edits, special offers and inspiration.</p>
 
-                    <form class="newsletter-form" id="newsletterForm" name="newsletter" method="POST" action="/">
+                    <form class="newsletter-form" id="newsletterForm" name="newsletter" method="post" action="#">
 <div class="newsletter-input">
                             <label class="visually-hidden" for="newsletterEmail">Email address</label>
                             <input type="email" id="newsletterEmail" name="email" placeholder="Your email address" autocomplete="email" required>
@@ -335,10 +407,11 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/products.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/home.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="js/products.js"></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/effects.js"></script>
+    <script defer src="js/home.js"></script>
 
 </body>
 </html>

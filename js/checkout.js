@@ -244,9 +244,21 @@
 
         if (checkoutForm.dataset.submitting === "true") return;
 
+        // stock may have changed in another tab since the bag was filled
+        const bagBefore = JSON.stringify(getCart());
+        sanitizeCart();
+
         const cart = getCart();
         if (cart.length === 0) {
-            showToast("Your cart is empty. Add an item before checking out.", "error");
+            renderCheckoutSummary();
+            showToast("Your bag is empty or its items are no longer available.", "error");
+            return;
+        }
+
+        if (JSON.stringify(cart) !== bagBefore) {
+            updateCartCount();
+            renderCheckoutSummary();
+            showToast("Some quantities changed because stock is limited. Please review your order.", "error");
             return;
         }
 
@@ -278,6 +290,7 @@
             return;
         }
 
+        adjustStock(order.items, -1);
         saveCart([]);
         updateCartCount();
 

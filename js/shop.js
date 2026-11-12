@@ -71,7 +71,14 @@
         const categoryParam = params.get("category");
         const searchParam = params.get("search");
 
+        const sortParam = params.get("sort");
+
         if (validCategories.includes(categoryParam)) state.category = categoryParam;
+
+        if (sortSelect && Array.from(sortSelect.options).some((option) => option.value === sortParam)) {
+            state.sort = sortParam;
+            sortSelect.value = sortParam;
+        }
 
         if (searchParam) {
             state.search = searchParam.trim();

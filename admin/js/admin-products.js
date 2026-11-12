@@ -128,7 +128,7 @@
     async function restoreSamples() {
         const confirmed = await adminConfirm({
             title: "Restore the sample products?",
-            message: "All products will be replaced by the 12 sample products. Products you added or changed will be lost.",
+            message: `All products will be replaced by the ${SEED_PRODUCTS.length} sample products. Products you added or changed will be lost.`,
             confirmText: "Restore",
             danger: true
         });

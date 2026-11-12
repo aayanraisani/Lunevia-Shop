@@ -66,7 +66,9 @@
             "@context": "https://schema.org",
             "@type": "Product",
             name: product.name,
-            image: (product.images && product.images.length ? product.images : [product.image]).filter((link) => link && !String(link).startsWith("data:")),
+            image: (product.images && product.images.length ? product.images : [product.image])
+                .filter((link) => link && !String(link).startsWith("data:"))
+                .map((link) => new URL(link, window.location.href).href),
             description: product.description,
             sku: `LV-${product.id}`,
             category: capitalize(product.category),
@@ -133,7 +135,11 @@
             thumb.addEventListener("click", () => {
                 thumbs.forEach((item) => item.classList.remove("active"));
                 thumb.classList.add("active");
-                if (mainImage) mainImage.src = thumb.dataset.thumbSrc;
+                if (mainImage) {
+                    mainImage.classList.add("is-swapping");
+                    mainImage.onload = () => mainImage.classList.remove("is-swapping");
+                    mainImage.src = thumb.dataset.thumbSrc;
+                }
             });
         });
     }

@@ -2844,3 +2844,370 @@ main:focus {
     color: var(--lv-text-soft);
     font-size: 12px;
 }
+
+
+/* =========================================================
+   MOTION & VISUAL POLISH
+   Transform/opacity only. Everything is switched off for
+   visitors who prefer reduced motion (see the end of this block).
+========================================================= */
+
+:root {
+    --lv-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ---------- scroll reveal (classes are added by js/effects.js, so nothing is hidden without JavaScript) ---------- */
+
+.lv-reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity 0.8s var(--lv-ease), transform 0.8s var(--lv-ease);
+    transition-delay: var(--lv-delay, 0ms);
+}
+
+.lv-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.lv-reveal--left { transform: translateX(-34px); }
+.lv-reveal--right { transform: translateX(34px); }
+
+/* ---------- hero ---------- */
+
+.hero-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.hero-section::before,
+.hero-section::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+}
+
+.hero-section::before {
+    top: -120px;
+    right: -80px;
+    width: 460px;
+    height: 460px;
+    background: radial-gradient(circle, rgba(214, 177, 140, 0.45), transparent 70%);
+    animation: lvDrift 14s ease-in-out infinite alternate;
+}
+
+.hero-section::after {
+    bottom: -160px;
+    left: -100px;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(226, 190, 186, 0.4), transparent 70%);
+    animation: lvDrift 18s ease-in-out infinite alternate-reverse;
+}
+
+.hero-text > * {
+    opacity: 0;
+    animation: lvRise 0.9s var(--lv-ease) forwards;
+}
+
+.hero-text > :nth-child(1) { animation-delay: 0.05s; }
+.hero-text > :nth-child(2) { animation-delay: 0.18s; }
+.hero-text > :nth-child(3) { animation-delay: 0.32s; }
+.hero-text > :nth-child(4) { animation-delay: 0.46s; }
+
+.hero-image {
+    animation: lvUnveil 1.2s var(--lv-ease) both;
+}
+
+.hero-image img {
+    animation: lvSlowZoom 18s ease-out both;
+    will-change: transform;
+}
+
+.hero-floating-card {
+    animation: lvRise 0.9s var(--lv-ease) 0.7s both, lvFloat 6s ease-in-out 1.6s infinite;
+}
+
+/* ---------- scrolling strip ---------- */
+
+.marquee {
+    overflow: hidden;
+    padding: 17px 0;
+    background: var(--lv-text);
+    color: #f3ebe1;
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: lvMarquee 38s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+.marquee-track span {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 28px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.marquee-track span::after {
+    content: "✦";
+    margin-left: 56px;
+    color: var(--lv-accent);
+    font-size: 10px;
+}
+
+/* ---------- header, progress bar, back to top ---------- */
+
+.site-header {
+    transition: box-shadow 0.35s ease, background-color 0.35s ease;
+}
+
+.site-header.is-scrolled {
+    box-shadow: 0 10px 30px rgba(39, 36, 33, 0.08);
+}
+
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--lv-accent), #d9b48a);
+    transform: scaleX(0);
+    transform-origin: left;
+    pointer-events: none;
+}
+
+.back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border: 1px solid var(--lv-border);
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--lv-text);
+    box-shadow: 0 10px 30px rgba(39, 36, 33, 0.12);
+    opacity: 0;
+    transform: translateY(14px);
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, background-color 0.25s ease, color 0.25s ease;
+}
+
+.back-to-top.is-shown {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: var(--lv-text);
+    color: #fff;
+}
+
+.nav-count.is-bumping {
+    animation: lvBump 0.5s var(--lv-ease);
+}
+
+/* ---------- cards & buttons ---------- */
+
+.product-image img {
+    transition: transform 0.9s var(--lv-ease);
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.06);
+}
+
+.product-wishlist.active i {
+    animation: lvPop 0.5s var(--lv-ease);
+}
+
+.btn-primary-custom i,
+.btn-light-custom i,
+.text-link i {
+    display: inline-block;
+    transition: transform 0.3s var(--lv-ease);
+}
+
+.btn-primary-custom:hover i,
+.btn-light-custom:hover i,
+.text-link:hover i {
+    transform: translateX(5px);
+}
+
+.category-card:hover .category-image img {
+    transform: scale(1.07);
+}
+
+.category-image img {
+    transition: transform 1s var(--lv-ease);
+}
+
+.fly-dot {
+    position: fixed;
+    z-index: 3000;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 12px 30px rgba(39, 36, 33, 0.25);
+    pointer-events: none;
+}
+
+/* ---------- ritual section ---------- */
+
+.ritual-section {
+    background: var(--lv-bg-soft);
+}
+
+.ritual-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 100%;
+    padding: 38px 32px 32px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--lv-border);
+    color: var(--lv-text);
+    transition: transform 0.45s var(--lv-ease), box-shadow 0.45s var(--lv-ease), border-color 0.3s ease;
+}
+
+.ritual-step:hover {
+    transform: translateY(-8px);
+    border-color: var(--lv-accent);
+    box-shadow: 0 24px 50px rgba(39, 36, 33, 0.1);
+    color: var(--lv-text);
+}
+
+.ritual-step > i {
+    color: var(--lv-accent);
+    font-size: 28px;
+}
+
+.ritual-step h3 {
+    margin: 0;
+    font-family: var(--lv-font-display);
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.ritual-step p {
+    margin: 0 0 8px;
+    color: var(--lv-text-soft);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.ritual-step .text-link {
+    margin-top: auto;
+}
+
+.ritual-number {
+    position: absolute;
+    top: 6px;
+    right: 22px;
+    color: var(--lv-border);
+    font-family: var(--lv-font-display);
+    font-size: 86px;
+    line-height: 1;
+    transition: color 0.4s ease, transform 0.6s var(--lv-ease);
+}
+
+.ritual-step:hover .ritual-number {
+    color: rgba(168, 128, 98, 0.35);
+    transform: translateY(-6px);
+}
+
+/* ---------- product page gallery ---------- */
+
+.product-main-image {
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+.product-main-image img {
+    transition: opacity 0.35s ease, transform 0.6s var(--lv-ease);
+    transform-origin: var(--zoom-x, 50%) var(--zoom-y, 50%);
+}
+
+.product-main-image img.is-swapping {
+    opacity: 0;
+}
+
+@media (hover: hover) and (min-width: 992px) {
+    .product-main-image:hover img {
+        transform: scale(1.55);
+    }
+}
+
+.product-thumb {
+    transition: transform 0.3s var(--lv-ease), border-color 0.3s ease, opacity 0.3s ease;
+}
+
+.product-thumb:hover {
+    transform: translateY(-3px);
+}
+
+/* ---------- keyframes ---------- */
+
+@keyframes lvRise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+@keyframes lvUnveil { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes lvSlowZoom { from { transform: scale(1.12); } to { transform: scale(1); } }
+@keyframes lvFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes lvDrift { from { transform: translate(0, 0) scale(1); } to { transform: translate(40px, 30px) scale(1.12); } }
+@keyframes lvMarquee { to { transform: translateX(-50%); } }
+@keyframes lvBump { 0%, 100% { transform: scale(1); } 40% { transform: scale(1.45); } }
+@keyframes lvPop { 0% { transform: scale(0.6); } 55% { transform: scale(1.35); } 100% { transform: scale(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .lv-reveal,
+    .hero-text > *,
+    .hero-image,
+    .hero-image img,
+    .hero-floating-card {
+        opacity: 1;
+        transform: none;
+        animation: none;
+        transition: none;
+        clip-path: none;
+    }
+
+    .hero-section::before,
+    .hero-section::after,
+    .marquee-track,
+    .product-wishlist.active i,
+    .nav-count.is-bumping {
+        animation: none;
+    }
+
+    .marquee-track {
+        flex-wrap: wrap;
+        width: auto;
+        justify-content: center;
+    }
+
+    .product-main-image:hover img {
+        transform: none;
+    }
+}
