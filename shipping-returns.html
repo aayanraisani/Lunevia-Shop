@@ -37,7 +37,7 @@
 
     <div class="announcement-bar">
         <div class="container text-center">
-            <p>Complimentary shipping on orders over $75 <span>•</span> Discover the new Lunévia collection</p>
+            <p>Complimentary shipping on orders over <lv-amount data-amount="threshold">$75</lv-amount> <span>•</span> Discover the new Lunévia collection</p>
         </div>
     </div>
 
@@ -95,7 +95,7 @@
                     <p class="legal-updated">Last updated: October 2026</p>
 
                     <div class="info-callout">
-                        <p><strong>Free shipping on orders over $75.</strong> Smaller orders ship for a flat fee of $5.</p>
+                        <p><strong>Free shipping on orders over <lv-amount data-amount="threshold">$75</lv-amount>.</strong> Smaller orders ship for a flat fee of <lv-amount data-amount="fee">$5</lv-amount>.</p>
                     </div>
 
                     <h2 id="shipping">Shipping</h2>
@@ -106,8 +106,8 @@
                                 <tr><th>Order total</th><th>Shipping cost</th></tr>
                             </thead>
                             <tbody>
-                                <tr><td>Under $75</td><td>$5</td></tr>
-                                <tr><td>$75 or more</td><td>Free</td></tr>
+                                <tr><td>Under <lv-amount data-amount="threshold">$75</lv-amount></td><td><lv-amount data-amount="fee">$5</lv-amount></td></tr>
+                                <tr><td><lv-amount data-amount="threshold">$75</lv-amount> or more</td><td>Free</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -207,9 +207,10 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/products.js"></script>
-    <script src="js/main.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="js/products.js"></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/effects.js"></script>
 
 </body>
 </html>
