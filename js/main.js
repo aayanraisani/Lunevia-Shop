@@ -565,6 +565,22 @@ window.addEventListener("pageshow", (event) => {
 });
 
 
+/* ---------- mobile menu fallback ---------- */
+
+// Bootstrap opens the menu. If its script could not load (blocked or slow CDN), this keeps the button working.
+function initMobileMenu() {
+    const toggler = document.querySelector(".navbar-toggler");
+    const menu = document.getElementById("mainNavbar");
+    if (!toggler || !menu) return;
+
+    toggler.addEventListener("click", () => {
+        if (window.bootstrap) return;
+
+        toggler.setAttribute("aria-expanded", String(menu.classList.toggle("show")));
+    });
+}
+
+
 /* ---------- store settings (changed in the admin panel) ---------- */
 
 // text like "free shipping over <lv-amount data-amount="threshold">$75</lv-amount>" follows the admin settings
@@ -587,6 +603,7 @@ initSearch();
 initNewsletter();
 initContactForm();
 highlightActiveNav();
+initMobileMenu();
 updateWishlistCount();
 updateWishlistButtons();
 updateCartCount();
